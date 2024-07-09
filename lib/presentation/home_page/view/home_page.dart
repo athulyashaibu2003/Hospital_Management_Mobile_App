@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
       // ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -86,9 +86,10 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     ),
-                    SizedBox(
-                      width: 170,
-                    ),
+                    // SizedBox(
+                    //   width: 170,
+                    // ),
+                    Spacer(),
                     IconButton(
                         onPressed: () {},
                         icon: Icon(
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                 Stack(children: [
                   Container(
                     height: 160,
-                    width: 500,
+                    width: MediaQuery.sizeOf(context).width * .95,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15)),
@@ -122,9 +123,9 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 25,
                                   fontWeight: FontWeight.w900),
                             ),
-                            SizedBox(
-                              width: 50,
-                            ),
+                            // SizedBox(
+                            //   width: 50,
+                            // ),
                             Image.asset(
                               "assets/images/doctor-examining-patient-clinic-illustrated.png",
                               height: 100,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hms_project/presentation/dashboard_screen/dashboard_screen.dart';
+import 'package:hms_project/presentation/home_page/view/bottom_navigation_bar/bottom_nav_bar.dart';
 import 'package:hms_project/presentation/login_page/view/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginPage(),
+                      builder: (context) => MyBottomNavBar(),
                     ));
               },
               child: Text(
