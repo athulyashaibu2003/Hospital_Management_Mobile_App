@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/controller/booking_patient_controller.dart';
+import 'package:provider/provider.dart';
 
 class NewBookingPage extends StatefulWidget {
   const NewBookingPage({super.key});
@@ -10,28 +12,47 @@ class NewBookingPage extends StatefulWidget {
 class _AppointmentBookingFormState extends State<NewBookingPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController firstnamecontroller = TextEditingController();
+  final TextEditingController lastnamecontroller = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _departmentController = TextEditingController();
+  final TextEditingController phnumbercontroller = TextEditingController();
   final TextEditingController _reasonController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
+  final TextEditingController patientidcontroller = TextEditingController();
   String? _selectedDoctor;
   String? _selectedTimeSlot;
+  String? _selectedDepartment;
 
-  final List<String> _doctorList = [
+  List<String> _doctorList = [
     'Dr. Smith',
     'Dr. Johnson',
     'Dr. Williams',
-    'Dr. Brown'
+    'Dr. Brown',
+    'Harilal KP',
   ];
+
   final List<String> _timeSlots = ['9-10 AM', '11-12 PM', '2-3 PM', '3-4 PM'];
+
+  @override
+  void initState() {
+    super.initState();
+    callFuction();
+  }
+
+  callFuction() async {
+    await Provider.of<BookingPatientController>(context, listen: false)
+        .department();
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
     _addressController.dispose();
-    _departmentController.dispose();
     _reasonController.dispose();
     _dateController.dispose();
+    firstnamecontroller.dispose();
+    lastnamecontroller.dispose();
+    phnumbercontroller.dispose();
     super.dispose();
   }
 
@@ -51,10 +72,14 @@ class _AppointmentBookingFormState extends State<NewBookingPage> {
 
   @override
   Widget build(BuildContext context) {
+    var functionprovider =
+        Provider.of<BookingPatientController>(context, listen: false);
+    var varprovider = Provider.of<BookingPatientController>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Appointment Booking'),
-        backgroundColor: Color(0xff0ea69f),
+        title: const Text('Appointment Booking'),
+        backgroundColor: const Color(0xff0ea69f),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -67,21 +92,73 @@ class _AppointmentBookingFormState extends State<NewBookingPage> {
                 TextFormField(
                   controller: _nameController,
                   decoration: InputDecoration(
-                    labelText: 'Name',
+                    labelText: 'Patient Id',
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    suffixIcon: IconButton(
+                      onPressed: () async {
+                        await functionprovider
+                            .patientdata(_nameController.text.trim());
+                        firstnamecontroller.text =
+                            varprovider.patientBookingModel.list?[0].fname ??
+                                "";
+                        lastnamecontroller.text =
+                            varprovider.patientBookingModel.list?[0].lname ??
+                                "";
+                        _addressController.text =
+                            varprovider.patientBookingModel.list?[0].addr ?? "";
+                        phnumbercontroller.text =
+                            varprovider.patientBookingModel.list?[0].phn ?? "";
+                        _selectedDepartment =
+                            varprovider.patientBookingModel.list?[0].dep ?? "";
+                        _selectedDoctor =
+                            varprovider.patientBookingModel.list?[0].doc ?? "";
+                        _reasonController.text =
+                            varprovider.patientBookingModel.list?[0].presc ??
+                                "";
+                      },
+                      icon: const Icon(Icons.check),
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
+                      return 'Please Enter a Valid Patient Id';
                     }
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
+                TextFormField(
+                  controller: firstnamecontroller,
+                  decoration: InputDecoration(
+                    labelText: 'First Name',
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.8),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  validator: (name) => name!.length < 3
+                      ? "Name should be at least 3 characters"
+                      : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                const SizedBox(height: 20.0),
+                TextFormField(
+                  controller: lastnamecontroller,
+                  decoration: InputDecoration(
+                    labelText: 'Last Name',
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.8),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   controller: _addressController,
                   decoration: InputDecoration(
@@ -99,29 +176,65 @@ class _AppointmentBookingFormState extends State<NewBookingPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
-                  controller: _departmentController,
+                  controller: phnumbercontroller,
                   decoration: InputDecoration(
-                    labelText: 'Department',
+                    labelText: 'Phone Number',
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.8),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value != null && value.length >= 7) {
+                      return null;
+                    } else {
+                      return "Mobile number is required";
+                    }
+                  },
+                ),
+                const SizedBox(height: 20.0),
+                DropdownButtonFormField<String>(
+                  value: _selectedDepartment,
+                  hint: const Text('Select Department'),
+                  decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
+                  items: varprovider.deptList.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) async {
+                    setState(() {
+                      _selectedDepartment = newValue;
+                    });
+                    await Provider.of<BookingPatientController>(context,
+                            listen: false)
+                        .doctors(_selectedDepartment);
+                  },
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter department';
+                    if (value == null) {
+                      return 'Please select a department';
                     }
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 DropdownButtonFormField<String>(
                   value: _selectedDoctor,
-                  hint: Text('Select Doctor'),
+                  hint: const Text('Select Doctor'),
                   decoration: InputDecoration(
+                    suffix: TextButton(
+                        onPressed: () {},
+                        child: const Text("check availability")),
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
@@ -146,7 +259,7 @@ class _AppointmentBookingFormState extends State<NewBookingPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   controller: _reasonController,
                   decoration: InputDecoration(
@@ -158,7 +271,7 @@ class _AppointmentBookingFormState extends State<NewBookingPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   controller: _dateController,
                   decoration: InputDecoration(
@@ -172,10 +285,10 @@ class _AppointmentBookingFormState extends State<NewBookingPage> {
                   readOnly: true,
                   onTap: () => _selectDate(context),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 DropdownButtonFormField<String>(
                   value: _selectedTimeSlot,
-                  hint: Text('Select Time Slot'),
+                  hint: const Text('Select Time Slot'),
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -201,28 +314,28 @@ class _AppointmentBookingFormState extends State<NewBookingPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
                         // Implement appointment booking functionality here
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Appointment Booked')),
+                          const SnackBar(content: Text('Appointment Booked')),
                         );
                       }
                     },
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
-                    ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff0ea69f),
+                      backgroundColor: const Color(0xff0ea69f),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 50.0, vertical: 15.0),
+                    ),
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),

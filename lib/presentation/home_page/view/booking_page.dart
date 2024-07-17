@@ -46,8 +46,8 @@ class _AppointmentBookingFormState extends State<AppointmentBookingForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Appointment Booking'),
-        backgroundColor: Color(0xff0ea69f),
+        title: const Text('Appointment Booking'),
+        backgroundColor: const Color(0xff0ea69f),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -74,7 +74,7 @@ class _AppointmentBookingFormState extends State<AppointmentBookingForm> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   controller: _doctorNameController,
                   decoration: InputDecoration(
@@ -92,7 +92,7 @@ class _AppointmentBookingFormState extends State<AppointmentBookingForm> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   controller: _departmentController,
                   decoration: InputDecoration(
@@ -110,7 +110,7 @@ class _AppointmentBookingFormState extends State<AppointmentBookingForm> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   controller: _reasonController,
                   decoration: InputDecoration(
@@ -122,7 +122,7 @@ class _AppointmentBookingFormState extends State<AppointmentBookingForm> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   controller: _dateController,
                   decoration: InputDecoration(
@@ -136,10 +136,10 @@ class _AppointmentBookingFormState extends State<AppointmentBookingForm> {
                   readOnly: true,
                   onTap: () => _selectDate(context),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 DropdownButtonFormField<String>(
                   value: _selectedTimeSlot,
-                  hint: Text('Select Time Slot'),
+                  hint: const Text('Select Time Slot'),
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -165,28 +165,28 @@ class _AppointmentBookingFormState extends State<AppointmentBookingForm> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
                         // Implement appointment booking functionality here
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Appointment Booked')),
+                          const SnackBar(content: Text('Appointment Booked')),
                         );
                       }
                     },
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
-                    ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff0ea69f),
+                      backgroundColor: const Color(0xff0ea69f),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 50.0, vertical: 15.0),
+                    ),
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),

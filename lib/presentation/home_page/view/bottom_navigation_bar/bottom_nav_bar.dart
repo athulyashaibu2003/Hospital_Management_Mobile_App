@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hms_project/presentation/home_page/Pending_booking.dart';
 import 'package:hms_project/presentation/home_page/view/home_page.dart';
 import 'package:hms_project/presentation/home_page/view/logout_screen/logout_screen.dart';
-import 'package:hms_project/presentation/home_page/view/new_booking_page.dart';
 import 'package:hms_project/presentation/home_page/view/profile_screen/profile_screen.dart';
 import 'package:hms_project/presentation/login_page/view/login_page.dart';
 
@@ -36,7 +34,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
-            backgroundColor: Color.fromARGB(255, 5, 92, 87),
+            backgroundColor: const Color.fromARGB(255, 5, 92, 87),
             selectedItemColor: const Color(0xff0ea69f),
             unselectedItemColor: Colors.white,
             currentIndex: myCurrentIndex,

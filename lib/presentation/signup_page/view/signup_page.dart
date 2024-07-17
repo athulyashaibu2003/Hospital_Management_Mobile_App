@@ -54,13 +54,13 @@ class _SignupPageState extends State<SignupPage> {
           print("Record inserted");
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
+              MaterialPageRoute(builder: (context) => const LoginPage()),
               (route) => false);
         }
         if (res.body == resp) {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
+              MaterialPageRoute(builder: (context) => const LoginPage()),
               (route) => false);
         }
       } catch (e) {
@@ -85,7 +85,7 @@ class _SignupPageState extends State<SignupPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Register',
                     style: TextStyle(
                       fontSize: 32.0,
@@ -93,7 +93,7 @@ class _SignupPageState extends State<SignupPage> {
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 40.0),
+                  const SizedBox(height: 40.0),
                   TextFormField(
                     controller: firstnamecontroller,
                     decoration: InputDecoration(
@@ -109,7 +109,7 @@ class _SignupPageState extends State<SignupPage> {
                         : null,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: lastnamecontroller,
                     decoration: InputDecoration(
@@ -121,7 +121,7 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                       controller: usernamecontroller,
                       decoration: InputDecoration(
@@ -139,7 +139,7 @@ class _SignupPageState extends State<SignupPage> {
                           return "Please Enter a Valid Username";
                         }
                       }),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: mailidcontroller,
                     decoration: InputDecoration(
@@ -152,7 +152,7 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     validator: validateEmail,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                       controller: phnumbercontroller,
                       decoration: InputDecoration(
@@ -170,7 +170,7 @@ class _SignupPageState extends State<SignupPage> {
                           return "Mobile number is required";
                         }
                       }),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: passwordcontroller,
                     obscureText: true,
@@ -190,7 +190,7 @@ class _SignupPageState extends State<SignupPage> {
                       }
                     },
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
                     controller: conpasswordcontroller,
                     obscureText: true,
@@ -203,7 +203,7 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   ElevatedButton(
                     onPressed: () {
                       // Implement registration functionality here
@@ -211,21 +211,22 @@ class _SignupPageState extends State<SignupPage> {
                       if (_formkey.currentState!.validate()) {
                         Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
                             (route) => false);
                       }
                     },
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
-                    ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff0ea69f),
+                      backgroundColor: const Color(0xff0ea69f),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 50.0, vertical: 15.0),
+                    ),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ],

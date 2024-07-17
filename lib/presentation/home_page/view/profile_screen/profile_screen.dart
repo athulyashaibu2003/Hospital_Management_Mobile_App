@@ -12,20 +12,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Family List"),
+        title: const Text("Family List"),
       ),
       body: Expanded(
         child: ListView.separated(
-            separatorBuilder: (context, index) => SizedBox(
+            separatorBuilder: (context, index) => const SizedBox(
                   height: 15,
                 ),
             itemCount: 3,
             itemBuilder: (context, index) => Container(
                   height: 50,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       border: Border.symmetric(
                           horizontal: BorderSide(color: Colors.black45))),
-                  child: ListTile(
+                  child: const ListTile(
                     leading: Icon(Icons.person),
                   ),
                 )),

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/presentation/home_page/view/doctor_home_screen.dart';
 import 'package:hms_project/presentation/home_page/view/home_page.dart';
-import 'package:hms_project/presentation/login_page/staff_login_page.dart';
-import 'package:hms_project/presentation/signup_page/view/signup_page.dart';
 import 'package:http/http.dart' as http;
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class StaffLoginPage extends StatefulWidget {
+  const StaffLoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<StaffLoginPage> createState() => _StaffLoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _StaffLoginPageState extends State<StaffLoginPage> {
   TextEditingController loginusernamecontroller = TextEditingController();
   TextEditingController loginpasswordcontroller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
@@ -98,22 +97,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 40.0),
                   TextFormField(
-                      controller: loginusernamecontroller,
-                      decoration: InputDecoration(
-                        labelText: 'Username',
-                        filled: true,
-                        fillColor: Colors.white.withOpacity(0.8),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
+                    controller: loginusernamecontroller,
+                    decoration: InputDecoration(
+                      labelText: 'Username',
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.8),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      validator: (value) {
-                        if (value != null && value.length >= 5) {
-                          return null;
-                        } else {
-                          return "Username is Required";
-                        }
-                      }),
+                    ),
+                    // validator: (value) {
+                    //   if (value != null && value.length >= 5) {
+                    //     return null;
+                    //   } else {
+                    //     return "Username is Required";
+                    //   }
+                    // }
+                  ),
                   const SizedBox(height: 20.0),
                   TextFormField(
                     controller: loginpasswordcontroller,
@@ -126,19 +126,24 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    validator: (value) {
-                      if (value != null && value.length >= 7) {
-                        return null;
-                      } else {
-                        return "Password is Required";
-                      }
-                    },
+                    // validator: (value) {
+                    //   if (value != null && value.length >= 7) {
+                    //     return null;
+                    //   } else {
+                    //     return "Password is Required";
+                    //   }
+                    // },
                   ),
                   const SizedBox(height: 20.0),
                   ElevatedButton(
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
-                        insertrecord();
+                        //  insertrecord();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const DoctorHomescreen()));
                       }
                       // Navigator.push(
                       //   context,
@@ -169,40 +174,6 @@ class _LoginPageState extends State<LoginPage> {
                       'Forgot Password?',
                       style: TextStyle(color: Color(0xff0ea69f)),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignupPage(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(color: Color(0xff0ea69f)),
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  OutlinedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const StaffLoginPage()));
-                      // Implement staff login functionality here
-                    },
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xff0ea69f),
-                      side: const BorderSide(color: Color(0xff0ea69f)),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50.0, vertical: 15.0),
-                    ),
-                    child: const Text('Staff Login'),
                   ),
                 ],
               ),

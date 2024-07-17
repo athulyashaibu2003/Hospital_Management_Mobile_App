@@ -12,10 +12,10 @@ class _PendingBookingState extends State<PendingBooking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff0ea69f),
-        title: Text("Pending Bookings"),
+        backgroundColor: const Color(0xff0ea69f),
+        title: const Text("Pending Bookings"),
       ),
-      body: Center(
+      body: const Center(
         child: Text("No Pending Bookings"),
       ),
     );

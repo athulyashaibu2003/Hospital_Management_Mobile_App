@@ -18,28 +18,28 @@ class _HomePageState extends State<HomePage> {
       'icon': "assets/images/3d-render-calendar-page-with-green-tick-icon.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': AppointmentBookingForm()
+      'page': const AppointmentBookingForm()
     },
     {
       'title': 'New Bookings',
       'icon': "assets/images/3886130.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': NewBookingPage()
+      'page': const NewBookingPage()
     },
     {
       'title': 'Pending Bookings',
       'icon': "assets/images/3959419.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': PendingBooking()
+      'page': const PendingBooking()
     },
     {
       'title': 'My Health',
       'icon': "assets/images/3169210.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': MyHealth()
+      'page': const MyHealth()
     },
   ];
 
@@ -60,14 +60,14 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.person_2_rounded,
                       size: 50,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -89,16 +89,16 @@ class _HomePageState extends State<HomePage> {
                     // SizedBox(
                     //   width: 170,
                     // ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.notifications_outlined,
                           size: 40,
                         ))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Stack(children: [
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "How Are You \nFeeling Today?",
                               style: TextStyle(
                                   color: Colors.black,
@@ -137,24 +137,25 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => NewBookingPage()));
+                                      builder: (context) =>
+                                          const NewBookingPage()));
                             },
-                            child: Text("Book Appointment"))
+                            child: const Text("Book Appointment"))
                       ],
                     ),
                   )
                 ]),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Text(
+                const Text(
                   "Our Services",
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Column(
+                const Column(
                   children: [
                     Row(
                       children: [],
@@ -164,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                 GridView.builder(
                   shrinkWrap: true,
                   itemCount: items.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, // Adjust as per your needs
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
@@ -194,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                             BoxShadow(
                               color: items[index]['bgColor'].withOpacity(0.5),
                               blurRadius: 8,
-                              offset: Offset(2, 4),
+                              offset: const Offset(2, 4),
                             ),
                           ],
                         ),
@@ -206,7 +207,7 @@ class _HomePageState extends State<HomePage> {
                               height: 100,
                               // color: items[index]['textColor'],
                             ),
-                            SizedBox(height: 10.0),
+                            const SizedBox(height: 10.0),
                             Text(
                               items[index]['title'],
                               textAlign: TextAlign.center,
@@ -218,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                                   Shadow(
                                     color: Colors.black.withOpacity(0.5),
                                     blurRadius: 3,
-                                    offset: Offset(1, 2),
+                                    offset: const Offset(1, 2),
                                   ),
                                 ],
                               ),

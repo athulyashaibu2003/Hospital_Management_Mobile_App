@@ -17,12 +17,12 @@ class _MyHealthState extends State<MyHealth> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xff0ea69f),
-        title: Text("My Health"),
+        backgroundColor: const Color(0xff0ea69f),
+        title: const Text("My Health"),
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Expanded(
@@ -42,12 +42,13 @@ class _MyHealthState extends State<MyHealth> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(MyHealth[index]['title']),
-                              SizedBox(
+                              const SizedBox(
                                 width: 250,
                               ),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.arrow_forward_ios_rounded))
+                                  icon: const Icon(
+                                      Icons.arrow_forward_ios_rounded))
                             ],
                           ),
                         ),
