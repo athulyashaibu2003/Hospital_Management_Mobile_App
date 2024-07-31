@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/new_patient_registrationscreen/new_patient_registrationscreen.dart';
 import 'package:hms_project/presentation/home_page/Pending_booking.dart';
 import 'package:hms_project/presentation/home_page/view/my_health.dart';
 import 'package:hms_project/presentation/home_page/view/booking_page.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       'icon': "assets/images/3886130.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': const NewBookingPage()
+      'page': const NewBookings()
     },
     {
       'title': 'Pending Bookings',
@@ -95,7 +96,16 @@ class _HomePageState extends State<HomePage> {
                         icon: const Icon(
                           Icons.notifications_outlined,
                           size: 40,
-                        ))
+                        )),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      NewPatientRegistrationscreen()));
+                        },
+                        icon: Icon(Icons.add))
                   ],
                 ),
                 const SizedBox(
@@ -138,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const NewBookingPage()));
+                                          const NewBookings()));
                             },
                             child: const Text("Book Appointment"))
                       ],

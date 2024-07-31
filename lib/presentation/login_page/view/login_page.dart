@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/home_page/view/home_page.dart';
 import 'package:hms_project/presentation/login_page/staff_login_page.dart';
 import 'package:hms_project/presentation/signup_page/view/signup_page.dart';
@@ -100,6 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                       controller: loginusernamecontroller,
                       decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: ColorConstants.mainBlue,
+                        ),
                         labelText: 'Username',
                         filled: true,
                         fillColor: Colors.white.withOpacity(0.8),
@@ -119,6 +124,10 @@ class _LoginPageState extends State<LoginPage> {
                     controller: loginpasswordcontroller,
                     obscureText: true,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.password_outlined,
+                        color: ColorConstants.mainBlue,
+                      ),
                       labelText: 'Password',
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.8),

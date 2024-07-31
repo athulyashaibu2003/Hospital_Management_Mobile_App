@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Image.asset("assets/images/9432602.jpg"),
+            child: Image.asset("assets/images/Family-Icon-for-Developers.gif"),
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
