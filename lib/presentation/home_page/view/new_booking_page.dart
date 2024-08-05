@@ -25,7 +25,7 @@ class _NewBookingsState extends State<NewBookings> {
   String? _selectedTimeSlot;
   String? _selectedDepartment;
   String phoneNumber = "";
-  List<String> _doctorList = [];
+  final List<String> _doctorList = [];
 
   callFuction() async {
     await Provider.of<BookingPatientController>(context, listen: false)
@@ -113,7 +113,7 @@ class _NewBookingsState extends State<NewBookings> {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: ColorConstants.mainBlue,
-            title: Text("New Booking"),
+            title: const Text("New Booking"),
           ),
           body: SafeArea(
             child: Padding(
@@ -124,16 +124,16 @@ class _NewBookingsState extends State<NewBookings> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 25,
                         ),
                         TextFormField(
                           controller: patientidcontroller,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             labelText: 'Patient Id',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.person,
                               color: ColorConstants.mainBlue,
                             ),
@@ -167,10 +167,10 @@ class _NewBookingsState extends State<NewBookings> {
                           controller: firstnamecontroller,
                           readOnly: true,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             labelText: 'First Name',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.person_outline,
                               color: ColorConstants.mainBlue,
                             ),
@@ -190,10 +190,10 @@ class _NewBookingsState extends State<NewBookings> {
                           controller: lastnamecontroller,
                           readOnly: true,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             labelText: 'Last Name',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.person_outline,
                               color: ColorConstants.mainBlue,
                             ),
@@ -209,10 +209,10 @@ class _NewBookingsState extends State<NewBookings> {
                           controller: _emailController,
                           readOnly: true,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             labelText: 'Email',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.email,
                               color: ColorConstants.mainBlue,
                             ),
@@ -234,10 +234,10 @@ class _NewBookingsState extends State<NewBookings> {
                           controller: phnumbercontroller,
                           readOnly: true,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             labelText: 'Phone Number',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.phone,
                               color: ColorConstants.mainBlue,
                             ),
@@ -260,11 +260,11 @@ class _NewBookingsState extends State<NewBookings> {
                           value: _selectedDepartment,
                           hint: const Text('Select Department'),
                           decoration: InputDecoration(
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.local_hospital,
                               color: ColorConstants.mainBlue,
                             ),
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             filled: true,
                             fillColor: Colors.white,
@@ -321,11 +321,11 @@ class _NewBookingsState extends State<NewBookings> {
                           value: _selectedDoctor,
                           hint: const Text('Select Doctor'),
                           decoration: InputDecoration(
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.medical_services,
                               color: ColorConstants.mainBlue,
                             ),
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             suffix: TextButton(
                                 onPressed: () {},
@@ -367,10 +367,6 @@ class _NewBookingsState extends State<NewBookings> {
                         const SizedBox(height: 25.0),
                         ElevatedButton(
                           onPressed: () {},
-                          child: Text(
-                            "Book your slot",
-                            style: TextStyle(color: Colors.white),
-                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xff0ea69f),
                             shape: RoundedRectangleBorder(
@@ -379,15 +375,19 @@ class _NewBookingsState extends State<NewBookings> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 50.0, vertical: 15.0),
                           ),
+                          child: const Text(
+                            "Book your slot",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                         const SizedBox(height: 25.0),
                         TextFormField(
                           controller: _reasonController,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             labelText: 'Reason (Optional)',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.edit,
                               color: ColorConstants.mainBlue,
                             ),
@@ -402,10 +402,10 @@ class _NewBookingsState extends State<NewBookings> {
                         TextFormField(
                           controller: _dateController,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             labelText: 'Date',
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.timer,
                               color: ColorConstants.mainBlue,
                             ),
@@ -429,7 +429,7 @@ class _NewBookingsState extends State<NewBookings> {
                           value: _selectedTimeSlot,
                           hint: const Text('Select Time Slot'),
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
                             filled: true,
                             fillColor: Colors.white,
@@ -477,11 +477,11 @@ class _NewBookingsState extends State<NewBookings> {
                                         context: context,
                                         builder: (context) {
                                           return AlertDialog(
-                                            title: Text(
+                                            title: const Text(
                                                 "You are successfully appointed"),
                                             actions: [
                                               TextButton(
-                                                child: Text("return"),
+                                                child: const Text("return"),
                                                 onPressed: () {
                                                   patientidcontroller.clear();
                                                   _emailController.clear();

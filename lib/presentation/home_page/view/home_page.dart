@@ -103,9 +103,9 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      NewPatientRegistrationscreen()));
+                                      const NewPatientRegistrationscreen()));
                         },
-                        icon: Icon(Icons.add))
+                        icon: const Icon(Icons.add))
                   ],
                 ),
                 const SizedBox(

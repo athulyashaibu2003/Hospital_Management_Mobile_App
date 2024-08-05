@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                       controller: loginusernamecontroller,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.person,
                           color: ColorConstants.mainBlue,
                         ),
@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: loginpasswordcontroller,
                     obscureText: true,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.password_outlined,
                         color: ColorConstants.mainBlue,
                       ),

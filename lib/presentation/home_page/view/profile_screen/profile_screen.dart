@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 TextFormField(
@@ -154,8 +154,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 TextFormField(
                   controller: aadharcontroller,
                   decoration: InputDecoration(
-                    suffixIcon:
-                        IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+                    suffixIcon: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.check)),
                     labelText: 'Aadhar',
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.8),
@@ -168,8 +168,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 TextFormField(
                   controller: pancontroller,
                   decoration: InputDecoration(
-                    suffixIcon:
-                        IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+                    suffixIcon: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.check)),
                     labelText: 'Pan',
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.8),
@@ -182,8 +182,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 TextFormField(
                   controller: uhidcontroller,
                   decoration: InputDecoration(
-                    suffixIcon:
-                        IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+                    suffixIcon: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.check)),
                     labelText: 'UHID',
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.8),
@@ -216,18 +216,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all(Size(45, 45)),
+                    minimumSize: WidgetStateProperty.all(const Size(45, 45)),
                     backgroundColor: WidgetStateProperty.all(
                       const Color(0xff0ea69f),
                     ),
                   ),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "Submit",
                     style: TextStyle(color: Colors.white),
                   ),

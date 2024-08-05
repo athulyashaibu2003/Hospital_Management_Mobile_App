@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/booking_patient_controller.dart';
 import 'package:hms_project/presentation/home_page/view/home_page.dart';
@@ -65,7 +66,9 @@ class _NewPatientRegistrationscreenState
     'Widowed'
   ];
 
-  List<String> _doctors = [];
+  final List<String> _doctors = [];
+
+  bool visible = false;
 
   callFuction() async {
     await Provider.of<BookingPatientController>(context, listen: false)
@@ -80,7 +83,7 @@ class _NewPatientRegistrationscreenState
 
   File? _profileImage;
   final ImagePicker _picker = ImagePicker();
-
+  File? files;
   Future<void> _pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -105,6 +108,23 @@ class _NewPatientRegistrationscreenState
       print('Image Uploaded');
     } else {
       print('Image Not Uploaded');
+    }
+  }
+
+  Future<void> uploadFile(File receipt) async {
+    print("xjhhhc");
+    final uri = Uri.parse("https://cybot.avanzosolutions.in/hms/testdoc.php");
+    var request = http.MultipartRequest('POST', uri);
+
+    var pic = await http.MultipartFile.fromPath("receipt", receipt.path);
+    request.files.add(pic);
+
+    var response = await request.send();
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      print('File Uploaded');
+    } else {
+      print('File Not Uploaded');
     }
   }
 
@@ -474,6 +494,47 @@ class _NewPatientRegistrationscreenState
                 ),
                 validator: _validateNotEmpty,
               ),
+              Visibility(
+                visible: visible,
+                child: Column(
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        "assets/images/file.png",
+                        height: MediaQuery.sizeOf(context).height * .1,
+                      ),
+                    ),
+                    Text(files?.path.split('/').last ?? ""),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Center(
+                child: InkWell(
+                  onTap: () async {
+                    print("object");
+                    FilePickerResult? result =
+                        await FilePicker.platform.pickFiles();
+                    if (result != null) {
+                      files = File(result.files.single.path!);
+                    }
+                    setState(() {
+                      visible = true;
+                    });
+                    print(files);
+                  },
+                  child: Container(
+                    height: 50,
+                    width: MediaQuery.sizeOf(context).width * .5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.blue,
+                    ),
+                    alignment: Alignment.center,
+                    child: const Text("Upload files"),
+                  ),
+                ),
+              ),
               const SizedBox(height: 16.0),
               CheckboxListTile(
                 title: const Text("I accept the terms and conditions"),
@@ -496,18 +557,23 @@ class _NewPatientRegistrationscreenState
                   ),
                   onPressed: _termsAccepted
                       ? () async {
-                          bool _profile = false;
+                          bool profile = false;
+                          bool fileupload = false;
                           if (_formKey.currentState!.validate()) {
                             // Form is valid, proceed with submission
                             if (_profileImage != null) {
-                              _profile = true;
+                              profile = true;
                             } else {
-                              _profile = false;
+                              profile = false;
                               imageName = "0";
                             }
+                            fileupload = files != null ? true : false;
                             await insertrecord();
-                            if (_profile) {
+                            if (profile) {
                               await uploadImage(_profileImage!);
+                            }
+                            if (fileupload) {
+                              await uploadFile(files!);
                             }
                             //  print("Form submitted");
                           } else {

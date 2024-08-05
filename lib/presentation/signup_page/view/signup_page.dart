@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/home_page/view/home_page.dart';
 import 'package:hms_project/presentation/login_page/view/login_page.dart';
 import 'package:http/http.dart' as http;
@@ -224,7 +223,7 @@ class _SignupPageState extends State<SignupPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50.0, vertical: 15.0),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Submit',
                       style: TextStyle(color: Colors.white),
                     ),
