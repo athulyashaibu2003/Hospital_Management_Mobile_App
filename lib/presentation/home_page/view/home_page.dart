@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hms_project/new_patient_registrationscreen/new_patient_registrationscreen.dart';
 import 'package:hms_project/presentation/home_page/Pending_booking.dart';
 import 'package:hms_project/presentation/home_page/view/my_health.dart';
-import 'package:hms_project/presentation/home_page/view/booking_page.dart';
+
 import 'package:hms_project/presentation/home_page/view/new_booking_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
       'icon': "assets/images/3d-render-calendar-page-with-green-tick-icon.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': const AppointmentBookingForm()
+      'page': const NewBookings()
     },
     {
       'title': 'New Bookings',
