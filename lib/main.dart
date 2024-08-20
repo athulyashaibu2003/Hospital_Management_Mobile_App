@@ -1,12 +1,22 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/booking_patient_controller.dart';
 import 'package:hms_project/controller/search_screen_controller.dart';
 import 'package:hms_project/presentation/splash_screen/view/splash_screen.dart';
 import 'package:provider/provider.dart';
 
-void main(List<String> args) {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  await EasyLocalization.ensureInitialized();
+  runApp(EasyLocalization(
+    supportedLocales: [
+      Locale('en'),
+      Locale('kn'),
+      Locale('ml'),
+    ],
+    path: 'assets/language/',
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +33,7 @@ class MyApp extends StatelessWidget {
           create: (context) => BookingPatientController(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),
