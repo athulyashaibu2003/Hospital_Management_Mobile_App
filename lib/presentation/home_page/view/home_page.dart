@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hms_project/new_patient_registrationscreen/new_patient_registrationscreen.dart';
 import 'package:hms_project/presentation/home_page/Pending_booking.dart';
 import 'package:hms_project/presentation/home_page/view/my_health.dart';
@@ -13,8 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FlutterLocalization _localization = FlutterLocalization.instance;
-
   final List<Map<String, dynamic>> items = [
     {
       'title': 'Bookings',
@@ -57,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               TextButton(
                   onPressed: () {
-                    _localization.translate('ml');
+                    LocalizationChecker.changeLanguge(context);
                   },
                   child: const Text("English")),
               TextButton(onPressed: () {}, child: Text("Kannada")),
@@ -85,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -95,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               children: [
                                 Text(
-                                  "Athulya",
+                                  "personal_details".tr(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       fontSize: 20),
@@ -269,5 +267,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+}
+
+class LocalizationChecker {
+  static changeLanguge(BuildContext context) {
+    Locale? currentLocal = EasyLocalization.of(context)!.currentLocale;
+    if (currentLocal == const Locale('en')) {
+      EasyLocalization.of(context)!.setLocale(const Locale('ml'));
+    } else {
+      EasyLocalization.of(context)!.setLocale(const Locale('en'));
+    }
   }
 }

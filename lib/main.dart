@@ -9,14 +9,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
-    supportedLocales: [
-      Locale('en'),
-      Locale('kn'),
-      Locale('ml'),
-    ],
-    path: 'assets/language/',
-    child: MyApp(),
-  ));
+      supportedLocales: const [Locale('en', 'US'), Locale('ar', 'AE')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,6 +30,9 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

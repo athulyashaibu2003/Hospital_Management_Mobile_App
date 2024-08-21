@@ -98,7 +98,7 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
                 child: Container(
                   child: TableCalendar(
                     calendarFormat: CalendarFormat.month,
-                    locale: "en-US",
+                    locale: "en",
                     calendarStyle: CalendarStyle(
                         todayTextStyle: const TextStyle(color: Colors.black),
                         todayDecoration: BoxDecoration(

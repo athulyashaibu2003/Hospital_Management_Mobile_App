@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/main.dart';
 import 'package:hms_project/presentation/home_page/view/home_page.dart';
 import 'package:hms_project/presentation/home_page/view/logout_screen/logout_screen.dart';
 import 'package:hms_project/presentation/home_page/view/profile_screen/profile_screen.dart';
 import 'package:hms_project/presentation/login_page/view/login_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MyBottomNavBar extends StatefulWidget {
   const MyBottomNavBar({super.key});
@@ -75,13 +77,13 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                 );
               }
             },
-            items: const [
+            items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined), label: "Home"),
+                  icon: Icon(Icons.home_outlined), label: "home".tr()),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.wallet_rounded), label: "Profile"),
+                  icon: Icon(Icons.wallet_rounded), label: "profile".tr()),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.exit_to_app_rounded), label: "Logout"),
+                  icon: Icon(Icons.exit_to_app_rounded), label: "logout".tr()),
             ],
           ),
         ),
