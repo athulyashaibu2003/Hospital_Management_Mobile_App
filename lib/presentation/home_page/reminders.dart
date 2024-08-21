@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PendingBooking extends StatefulWidget {
-  const PendingBooking({super.key});
+class Reminders extends StatefulWidget {
+  const Reminders({super.key});
 
   @override
-  State<PendingBooking> createState() => _PendingBookingState();
+  State<Reminders> createState() => _RemindersState();
 }
 
-class _PendingBookingState extends State<PendingBooking> {
+class _RemindersState extends State<Reminders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

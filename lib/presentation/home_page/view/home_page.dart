@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hms_project/new_patient_registrationscreen/new_patient_registrationscreen.dart';
-import 'package:hms_project/presentation/home_page/Pending_booking.dart';
+import 'package:hms_project/presentation/home_page/reminders.dart';
 import 'package:hms_project/presentation/home_page/view/my_health.dart';
 import 'package:hms_project/presentation/home_page/view/new_booking_page.dart';
 
@@ -15,28 +15,28 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> items = [
     {
-      'title': 'Bookings',
+      'title': 'Bookings'.tr(),
       'icon': "assets/images/3d-render-calendar-page-with-green-tick-icon.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
       'page': const NewBookings()
     },
     {
-      'title': 'New Bookings',
+      'title': 'New Bookings'.tr(),
       'icon': "assets/images/3886130.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
       'page': const NewBookings()
     },
     {
-      'title': 'Pending Bookings',
+      'title': 'Reminders'.tr(),
       'icon': "assets/images/3959419.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': const PendingBooking()
+      'page': const Reminders()
     },
     {
-      'title': 'My Health',
+      'title': 'My Health'.tr(),
       'icon': "assets/images/3169210.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
@@ -49,17 +49,31 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
+        leading: Image.asset(
+          "assets/images/highland_logo.jpeg",
+        ),
         actions: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextButton(
                   onPressed: () {
-                    LocalizationChecker.changeLanguge(context);
+                    LocalizationChecker.changeLanguge(
+                        context: context, locale: Locale('en', 'US'));
                   },
-                  child: const Text("English")),
-              TextButton(onPressed: () {}, child: Text("Kannada")),
-              TextButton(onPressed: () {}, child: Text("Malayalam")),
+                  child: const Text("English").tr()),
+              TextButton(
+                  onPressed: () {
+                    LocalizationChecker.changeLanguge(
+                        context: context, locale: Locale('kn', 'IN'));
+                  },
+                  child: Text("Kannada").tr()),
+              TextButton(
+                  onPressed: () {
+                    LocalizationChecker.changeLanguge(
+                        context: context, locale: Locale('ml', 'IN'));
+                  },
+                  child: Text("Malayalam").tr()),
             ],
           ),
         ],
@@ -87,13 +101,13 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Welcome",
+                              "Welcome".tr(),
                               style: TextStyle(fontSize: 15),
                             ),
                             Row(
                               children: [
                                 Text(
-                                  "personal_details".tr(),
+                                  "Athulya".tr(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       fontSize: 20),
@@ -139,12 +153,14 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Row(
                               children: [
-                                const Text(
-                                  "How Are You \nFeeling Today?",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w900),
+                                Expanded(
+                                  child: Text(
+                                    "How Are You Feeling Today?".tr(),
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w900),
+                                  ),
                                 ),
                                 Image.asset(
                                   "assets/images/doctor-examining-patient-clinic-illustrated.png",
@@ -160,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                                           builder: (context) =>
                                               const NewBookings()));
                                 },
-                                child: const Text("Book Appointment"))
+                                child: const Text("Book Appointment").tr())
                           ],
                         ),
                       )
@@ -168,8 +184,8 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 15,
                     ),
-                    const Text(
-                      "Our Services",
+                    Text(
+                      "Our Services".tr(),
                       style:
                           TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
                     ),
@@ -221,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 const SizedBox(height: 10.0),
                                 Text(
-                                  items[index]['title'],
+                                  '${items[index]['title']}'.tr(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 20.0,
@@ -271,12 +287,15 @@ class _HomePageState extends State<HomePage> {
 }
 
 class LocalizationChecker {
-  static changeLanguge(BuildContext context) {
-    Locale? currentLocal = EasyLocalization.of(context)!.currentLocale;
-    if (currentLocal == const Locale('en')) {
-      EasyLocalization.of(context)!.setLocale(const Locale('ml'));
-    } else {
-      EasyLocalization.of(context)!.setLocale(const Locale('en'));
-    }
+  static changeLanguge(
+      {required BuildContext context, required Locale locale}) {
+    EasyLocalization.of(context)!.setLocale(locale);
+
+    // Locale? currentLocal = EasyLocalization.of(context)!.currentLocale;
+    // if (currentLocal == const Locale('en', 'US')) {
+    //   EasyLocalization.of(context)!.setLocale(const Locale('ml', 'IN'));
+    // } else {
+    //   EasyLocalization.of(context)!.setLocale(const Locale('en', 'US'));
+    // }
   }
 }

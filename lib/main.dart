@@ -9,7 +9,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
-      supportedLocales: const [Locale('en', 'US'), Locale('ar', 'AE')],
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('ml', 'IN'),
+        Locale('kn', 'IN'),
+      ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en', 'US'),
       child: const MyApp()));
