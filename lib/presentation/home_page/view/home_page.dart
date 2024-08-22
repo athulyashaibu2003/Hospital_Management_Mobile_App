@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hms_project/new_patient_registrationscreen/new_patient_registrationscreen.dart';
+import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/home_page/reminders.dart';
 import 'package:hms_project/presentation/home_page/view/my_health.dart';
 import 'package:hms_project/presentation/home_page/view/new_booking_page.dart';
@@ -15,28 +16,28 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> items = [
     {
-      'title': 'Bookings'.tr(),
+      'title': 'bookings',
       'icon': "assets/images/3d-render-calendar-page-with-green-tick-icon.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
       'page': const NewBookings()
     },
     {
-      'title': 'New Bookings'.tr(),
+      'title': 'new_bookings',
       'icon': "assets/images/3886130.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
       'page': const NewBookings()
     },
     {
-      'title': 'Reminders'.tr(),
+      'title': 'reminders',
       'icon': "assets/images/3959419.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
       'page': const Reminders()
     },
     {
-      'title': 'My Health'.tr(),
+      'title': 'my_health',
       'icon': "assets/images/3169210.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
@@ -49,6 +50,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
+        backgroundColor: ColorConstants.mainwhite,
         leading: Image.asset(
           "assets/images/highland_logo.jpeg",
         ),
@@ -61,29 +63,38 @@ class _HomePageState extends State<HomePage> {
                     LocalizationChecker.changeLanguge(
                         context: context, locale: Locale('en', 'US'));
                   },
-                  child: const Text("English").tr()),
+                  child: const Text(
+                    "English",
+                    style: TextStyle(color: ColorConstants.mainBlue),
+                  ).tr()),
               TextButton(
                   onPressed: () {
                     LocalizationChecker.changeLanguge(
                         context: context, locale: Locale('kn', 'IN'));
                   },
-                  child: Text("Kannada").tr()),
+                  child: Text(
+                    "ಕನ್ನಡ",
+                    style: TextStyle(color: ColorConstants.mainBlue),
+                  ).tr()),
               TextButton(
                   onPressed: () {
                     LocalizationChecker.changeLanguge(
                         context: context, locale: Locale('ml', 'IN'));
                   },
-                  child: Text("Malayalam").tr()),
+                  child: Text(
+                    "മലയാളം",
+                    style: TextStyle(color: ColorConstants.mainBlue),
+                  ).tr()),
             ],
           ),
         ],
       ),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,9 +121,11 @@ class _HomePageState extends State<HomePage> {
                                   "Athulya".tr(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
+                                      color: ColorConstants.mainBlue,
                                       fontSize: 20),
                                 ),
-                                Icon(Icons.arrow_drop_down_outlined)
+                                Icon(Icons.arrow_drop_down_outlined,
+                                    color: ColorConstants.mainBlue)
                               ],
                             )
                           ],
@@ -176,7 +189,11 @@ class _HomePageState extends State<HomePage> {
                                           builder: (context) =>
                                               const NewBookings()));
                                 },
-                                child: const Text("Book Appointment").tr())
+                                child: const Text(
+                                  "Book Appointment",
+                                  style:
+                                      TextStyle(color: ColorConstants.mainBlue),
+                                ).tr())
                           ],
                         ),
                       )
@@ -261,25 +278,25 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 10, // Adjust the distance from the bottom
-              right: 16,
-              child: FloatingActionButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                child: SizedBox(
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: Image.asset(
-                    "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
-                    fit: BoxFit.contain,
+              Positioned(
+                bottom: 10, // Adjust the distance from the bottom
+                right: 16,
+                child: FloatingActionButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  child: SizedBox(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: Image.asset(
+                      "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
+                      fit: BoxFit.contain,
+                    ),
                   ),
+                  onPressed: () {},
                 ),
-                onPressed: () {},
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

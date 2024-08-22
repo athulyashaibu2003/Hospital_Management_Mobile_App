@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
+import 'package:hms_project/presentation/home_page/view/bottom_navigation_bar/bottom_nav_bar.dart';
 import 'package:hms_project/presentation/home_page/view/home_page.dart';
 import 'package:hms_project/presentation/login_page/staff_login_page.dart';
 import 'package:hms_project/presentation/signup_page/view/signup_page.dart';
@@ -50,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
           Future.delayed(const Duration(milliseconds: 1500), () {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
+                MaterialPageRoute(builder: (context) => const MyBottomNavBar()),
                 (route) => false);
           });
           loginpasswordcontroller.clear();

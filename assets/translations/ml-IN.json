@@ -5,15 +5,14 @@
     "logout_confirmation": "നിങ്ങൾക്ക് ലോഗ്ഔട്ട് ചെയ്യണമെന്ന് തീർച്ചയാണോ?",
     "cancel": "റദ്ദാക്കുക",
     "logout_button": "ലോഗ്ഔട്ട്",
-    "Athulya": "അതുൾയ",
+    "Athulya": "അതുല്യ",
     "Welcome": "സ്വാഗതം",
-    "Bookings": "ബുക്കിംഗുകൾ",
-    "New Bookings": "പുതിയ ബുക്കിംഗുകൾ",
+    "bookings": "ബുക്കിംഗുകൾ",
+    "new_bookings": "പുതിയ ബുക്കിംഗുകൾ",
     "pending_bookings": "തുടങ്ങിയിരിക്കുന്ന ബുക്കിംഗുകൾ",
     "my_health": "എന്റെ ആരോഗ്യം",
     "How Are You Feeling Today?": "ഇന്നെങ്ങനെയുണ്ട്?",
     "Book Appointment": "അപോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക",
     "Our Services": "നമ്മുടെ സേവനങ്ങൾ",
-    "Reminders": "ഉപദേശങ്ങൾ",
-    "My Health": "എന്റെ ആരോഗ്യം"
+    "reminders": "ഓർമ്മപ്പെടുത്തലുകൾ"
 }

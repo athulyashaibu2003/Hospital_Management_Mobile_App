@@ -7,13 +7,12 @@
     "logout_button": "Logout",
     "Athulya": "Athulya",
     "Welcome": "Welcome",
-    "Bookings": "Bookings",
-    "New Bookings": "New Bookings",
+    "bookings": "Bookings",
+    "new_bookings": "New Bookings",
     "pending_bookings": "Pending Bookings",
     "my_health": "My Health",
     "How Are You Feeling Today?": "How Are You Feeling Today?",
     "Book Appointment": "Book Appointment",
     "Our Services": "Our Services",
-    "Reminders": "Reminders",
-    "My Health": "My Health"
+    "reminders": "Reminders"
 }
