@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 
 class StaffLoginPage extends StatefulWidget {
   const StaffLoginPage({super.key});
-
   @override
   State<StaffLoginPage> createState() => _StaffLoginPageState();
 }
@@ -24,11 +23,10 @@ class _StaffLoginPageState extends State<StaffLoginPage> {
           "loginusernamecontroller": loginusernamecontroller.text,
           "loginpasswordcontroller": loginpasswordcontroller.text
         });
-        var response = "success";
-        var resp = "WRONG CREDENTIALS";
 
-        if (res.body == response) {
+        if (res.statusCode == 200) {
           print("Record inserted");
+          print(res.body);
           // Save the login state and credentials
           //   box1.put('isLoggedIn', true);
           // if (isChecked) {

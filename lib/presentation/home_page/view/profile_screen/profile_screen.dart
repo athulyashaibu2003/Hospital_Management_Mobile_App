@@ -1,241 +1,159 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  TextEditingController firstnamecontroller = TextEditingController();
-  TextEditingController lastnamecontroller = TextEditingController();
-  TextEditingController patientguardianame = TextEditingController();
-  TextEditingController addresscontroller = TextEditingController();
-  TextEditingController agecontroller = TextEditingController();
-  TextEditingController emailcontroller = TextEditingController();
-  TextEditingController phonecontroller = TextEditingController();
-  TextEditingController aadharcontroller = TextEditingController();
-  TextEditingController pancontroller = TextEditingController();
-  TextEditingController uhidcontroller = TextEditingController();
-  TextEditingController remarkscontroller = TextEditingController();
-  TextEditingController departmentcontroller = TextEditingController();
-
-  String? _selectedGender;
+class PatientProfileScreen extends StatelessWidget {
+  const PatientProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New User"),
+        title: const Text('Patient Profile'),
+        centerTitle: true,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  controller: firstnamecontroller,
-                  decoration: InputDecoration(
-                    labelText: 'First Name',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Profile Picture and Basic Information
+              const Center(
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      //backgroundImage: AssetImage(
+                      //    'assets/patient_profile.jpg'), // Replace with the correct image
                     ),
-                  ),
-                  validator: (name) => name!.length < 3
-                      ? "Name should be at least 3 characters"
-                      : null,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: lastnamecontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Last Name',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                    SizedBox(height: 10),
+                    Text(
+                      'Jane Doe',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: patientguardianame,
-                  decoration: InputDecoration(
-                    labelText: 'Patient Guardian Name',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                    SizedBox(height: 5),
+                    Text(
+                      'Patient ID: 123456',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: addresscontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Address',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: agecontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Age',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                DropdownButtonFormField<String>(
-                  value: _selectedGender,
-                  decoration: InputDecoration(
-                    labelText: 'Gender',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  items: ['Male', 'Female', 'Other'].map((String gender) {
-                    return DropdownMenuItem<String>(
-                      value: gender,
-                      child: Text(gender),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selectedGender = newValue;
-                    });
+              ),
+              const SizedBox(height: 20),
+
+              // Contact Information
+              _buildSectionTitle('Contact Information'),
+              _buildInfoRow(Icons.phone, 'Phone', '+1 987 654 3210'),
+              _buildInfoRow(Icons.person, 'Emergency Contact',
+                  'John Doe - +1 123 456 7890'),
+              const SizedBox(height: 20),
+
+              // Medical Information
+              _buildSectionTitle('Medical Information'),
+              _buildInfoRow(Icons.favorite, 'Blood Type', 'O+'),
+              _buildInfoRow(Icons.warning, 'Allergies', 'Penicillin'),
+              _buildInfoRow(
+                  Icons.medical_services, 'Current Treatment', 'Antibiotics'),
+              const SizedBox(height: 20),
+
+              // Appointment Details
+              _buildSectionTitle('Appointments'),
+              Card(
+                elevation: 3,
+                child: ListTile(
+                  leading: const Icon(Icons.calendar_today),
+                  title: const Text('Upcoming Appointments'),
+                  subtitle: const Text('Thursday, 31st Aug - 2:00 PM'),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                    // Handle appointment details
                   },
-                  validator: (value) =>
-                      value == null ? "Please select a gender" : null,
                 ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: emailcontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+              ),
+              const SizedBox(height: 20),
+
+              // Action Buttons
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SafeArea(
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildActionButton(
+                          Icons.edit, 'Edit Profile', Colors.blue),
+                      _buildActionButton(
+                          Icons.folder_open, 'View Records', Colors.green),
+                      _buildActionButton(
+                          Icons.exit_to_app, 'Log Out', Colors.red),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: phonecontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Phone',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: aadharcontroller,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.check)),
-                    labelText: 'Aadhar',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: pancontroller,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.check)),
-                    labelText: 'Pan',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: uhidcontroller,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.check)),
-                    labelText: 'UHID',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: remarkscontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Remarks',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextFormField(
-                  controller: departmentcontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Department',
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.8),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all(const Size(45, 45)),
-                    backgroundColor: WidgetStateProperty.all(
-                      const Color(0xff0ea69f),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(IconData icon, String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.blueGrey),
+          const SizedBox(width: 10),
+          Text(
+            '$label: ',
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButton(IconData icon, String label, Color color) {
+    return ElevatedButton.icon(
+      onPressed: () {},
+      icon: Icon(icon, color: Colors.white),
+      label: Text(label),
+      style: ElevatedButton.styleFrom(
+        // primary: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       ),
     );
   }

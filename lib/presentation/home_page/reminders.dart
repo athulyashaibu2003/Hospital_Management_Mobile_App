@@ -13,10 +13,10 @@ class _RemindersState extends State<Reminders> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff0ea69f),
-        title: const Text("Pending Bookings"),
+        title: const Text("Reminders"),
       ),
       body: const Center(
-        child: Text("No Pending Bookings"),
+        child: Text("No Reminders Available"),
       ),
     );
   }

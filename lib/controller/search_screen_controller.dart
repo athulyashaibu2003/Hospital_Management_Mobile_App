@@ -14,6 +14,7 @@ class SearchScreenController with ChangeNotifier {
       var res = await http.post(Uri.parse(uri), body: {
         "patientnamecontroller": searchText,
       });
+      print(res.body);
       var json = await jsonDecode(res.body) as Map<String, dynamic>;
       print(json);
       searchModel = SearchModel.fromJson(json);

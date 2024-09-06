@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/presentation/home_page/view/doctor_home_screen.dart';
+import 'package:hms_project/presentation/home_page/view/reports.dart';
 
 class MyHealth extends StatefulWidget {
   const MyHealth({super.key});
@@ -9,9 +11,10 @@ class MyHealth extends StatefulWidget {
 
 class _MyHealthState extends State<MyHealth> {
   final List<Map<String, dynamic>> MyHealth = [
-    {'title': 'Reports'},
+    {'title': 'Reports', 'screen': Reports()},
     {'title': 'Recordings'}
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +49,13 @@ class _MyHealthState extends State<MyHealth> {
                                 width: 250,
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                MyHealth[index]['screen']));
+                                  },
                                   icon: const Icon(
                                       Icons.arrow_forward_ios_rounded))
                             ],

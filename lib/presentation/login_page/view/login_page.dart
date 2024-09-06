@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/controller/search_screen_controller.dart';
+import 'package:hms_project/controller/sos_controller.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/home_page/view/bottom_navigation_bar/bottom_nav_bar.dart';
-import 'package:hms_project/presentation/home_page/view/home_page.dart';
 import 'package:hms_project/presentation/login_page/staff_login_page.dart';
 import 'package:hms_project/presentation/signup_page/view/signup_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController loginusernamecontroller = TextEditingController();
   TextEditingController loginpasswordcontroller = TextEditingController();
+  String patientId = '';
   final _formkey = GlobalKey<FormState>();
   Future<void> insertrecord() async {
     if (loginusernamecontroller.text.isNotEmpty &&
@@ -27,10 +30,10 @@ class _LoginPageState extends State<LoginPage> {
           "loginusernamecontroller": loginusernamecontroller.text,
           "loginpasswordcontroller": loginpasswordcontroller.text
         });
-        var response = "success";
-        var resp = "WRONG CREDENTIALS";
-
-        if (res.body == response) {
+        print(res.body);
+        patientId = res.body;
+        if (res.statusCode == 200) {
+          print(res.body);
           print("Record inserted");
           // Save the login state and credentials
           //   box1.put('isLoggedIn', true);
@@ -78,6 +81,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var patientDetailsFunctionProvider =
+        Provider.of<SearchScreenController>(context, listen: false);
+    var patientDetailsProvider =
+        Provider.of<SearchScreenController>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -146,9 +153,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20.0),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formkey.currentState!.validate()) {
-                        insertrecord();
+                        await insertrecord();
+                        await patientDetailsFunctionProvider
+                            .patientdata(patientId);
                       }
                       // Navigator.push(
                       //   context,

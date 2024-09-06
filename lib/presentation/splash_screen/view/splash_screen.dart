@@ -1,8 +1,7 @@
 import 'dart:async';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hms_project/presentation/home_page/view/bottom_navigation_bar/bottom_nav_bar.dart';
+import 'package:hms_project/presentation/login_page/view/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,12 +11,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Timer(const Duration(milliseconds: 2160), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MyBottomNavBar()));
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
     });
   }
 

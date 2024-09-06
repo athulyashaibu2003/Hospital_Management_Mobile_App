@@ -1,10 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:hms_project/new_patient_registrationscreen/new_patient_registrationscreen.dart';
+import 'package:hms_project/controller/search_screen_controller.dart';
+import 'package:hms_project/presentation/home_page/new_patient_registrationscreen/new_patient_registrationscreen.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/home_page/reminders.dart';
+import 'package:hms_project/presentation/home_page/view/feedback.dart/feedback.dart';
 import 'package:hms_project/presentation/home_page/view/my_health.dart';
+import 'package:hms_project/presentation/home_page/view/new.dart';
 import 'package:hms_project/presentation/home_page/view/new_booking_page.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,6 +51,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var patientDetailsProvider = Provider.of<SearchScreenController>(context);
+
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
@@ -61,7 +67,7 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                   onPressed: () {
                     LocalizationChecker.changeLanguge(
-                        context: context, locale: Locale('en', 'US'));
+                        context: context, locale: const Locale('en', 'US'));
                   },
                   child: const Text(
                     "English",
@@ -70,18 +76,18 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                   onPressed: () {
                     LocalizationChecker.changeLanguge(
-                        context: context, locale: Locale('kn', 'IN'));
+                        context: context, locale: const Locale('kn', 'IN'));
                   },
-                  child: Text(
+                  child: const Text(
                     "ಕನ್ನಡ",
                     style: TextStyle(color: ColorConstants.mainBlue),
                   ).tr()),
               TextButton(
                   onPressed: () {
                     LocalizationChecker.changeLanguge(
-                        context: context, locale: Locale('ml', 'IN'));
+                        context: context, locale: const Locale('ml', 'IN'));
                   },
-                  child: Text(
+                  child: const Text(
                     "മലയാളം",
                     style: TextStyle(color: ColorConstants.mainBlue),
                   ).tr()),
@@ -113,18 +119,20 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Text(
                               "Welcome".tr(),
-                              style: TextStyle(fontSize: 15),
+                              style: const TextStyle(fontSize: 15),
                             ),
                             Row(
                               children: [
                                 Text(
-                                  "Athulya".tr(),
-                                  style: TextStyle(
+                                  patientDetailsProvider
+                                          .searchModel.list?[0].fname ??
+                                      "".tr(),
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w900,
                                       color: ColorConstants.mainBlue,
                                       fontSize: 20),
                                 ),
-                                Icon(Icons.arrow_drop_down_outlined,
+                                const Icon(Icons.arrow_drop_down_outlined,
                                     color: ColorConstants.mainBlue)
                               ],
                             )
@@ -146,6 +154,17 @@ class _HomePageState extends State<HomePage> {
                                           const NewPatientRegistrationscreen()));
                             },
                             icon: const Icon(Icons.add)),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FeedbackForm()));
+                            },
+                            child: const Text(
+                              "Feedback",
+                              style: TextStyle(color: ColorConstants.mainBlue),
+                            ))
                       ],
                     ),
                     const SizedBox(
@@ -169,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                                 Expanded(
                                   child: Text(
                                     "How Are You Feeling Today?".tr(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 25,
                                         fontWeight: FontWeight.w900),
@@ -187,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const NewBookings()));
+                                              AppointmentBooking()));
                                 },
                                 child: const Text(
                                   "Book Appointment",
@@ -203,11 +222,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Text(
                       "Our Services".tr(),
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                      style: const TextStyle(
+                          fontSize: 17, fontWeight: FontWeight.w800),
                     ),
                     GridView.builder(
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: items.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -278,23 +298,23 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Positioned(
-                bottom: 10, // Adjust the distance from the bottom
-                right: 16,
-                child: FloatingActionButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: SizedBox(
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: Image.asset(
-                      "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
-              ),
+              // Positioned(
+              //   bottom: 1, // Adjust the distance from the bottom
+              //   right: 16,
+              //   child: FloatingActionButton(
+              //     shape: const CircleBorder(),
+              //     child: const CircleAvatar(
+              //       radius: 45,
+              //       backgroundImage: AssetImage(
+              //           "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg"),
+              //     ),
+              //     // child: Image.asset(
+              //     //   "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
+              //     //   fit: BoxFit.fill,
+              //     // ),
+              //     onPressed: () {},
+              //   ),
+              // ),
             ],
           ),
         ),

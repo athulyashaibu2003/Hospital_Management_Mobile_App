@@ -11,7 +11,7 @@ class BookingPatientController with ChangeNotifier {
   List<String> deptList = [];
   List<String> timeList = [];
   bool? isSuccessful;
-
+  List<String> selectedtimeList = [];
   department() async {
     String uri = "https://cybot.avanzosolutions.in/hms/departments.php";
     try {
@@ -74,6 +74,7 @@ class BookingPatientController with ChangeNotifier {
     required String eMail,
     required String phNum,
     required String dept,
+    required String docname,
     required String docId,
     required String reason,
     required String date,
@@ -94,13 +95,43 @@ class BookingPatientController with ChangeNotifier {
         "timecontroller": time,
       });
       print("booking : ${res.body}");
-      isSuccessful = res.body == "success" ? true : false;
+      isSuccessful = res.statusCode == 200 ? true : false;
     } catch (e) {
       log(e.toString());
     }
     notifyListeners();
   }
 
+  doctorTimeSlots({
+    required String? empid,
+    required String? dept,
+  }) async {
+    selectedtimeList.clear();
+    String uri = "https://cybot.avanzosolutions.in/hms/booktimeslots.php";
+    try {
+      var res = await http.post(Uri.parse(uri), body: {
+        "doctoridcontroller": empid,
+        "departmentidcontroller": dept,
+        // "datecontroller": date
+      });
+      // print("-------------${res.body}");
+      Map<String, dynamic> timeSlotMap = await jsonDecode(res.body);
+      print(timeSlotMap);
+      for (var i = 1; i < timeList.length + 2; i++) {
+        if (timeSlotMap.containsKey(i.toString())) {
+          // selectedtimeList.add(timeSlotList[0][i.toString()]);
+          int j = i - 2;
+          selectedtimeList.add(j.toString());
+          // listOfSelectedTimeList.add(selectedtimeList);
+        }
+      }
+      print("----$selectedtimeList");
+      // print("----$listOfSelectedTimeList");
+    } catch (e) {
+      log(e.toString());
+    }
+    notifyListeners();
+  }
 //
 // timeslotBooking({required String dept, required String docId,}
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/booking_patient_controller.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
@@ -26,6 +28,8 @@ class _NewBookingsState extends State<NewBookings> {
   String? _selectedDepartment;
   String phoneNumber = "";
   final List<String> _doctorList = [];
+  int counter = 0;
+  int? selectedindex;
 
   callFuction() async {
     await Provider.of<BookingPatientController>(context, listen: false)
@@ -47,6 +51,8 @@ class _NewBookingsState extends State<NewBookings> {
     firstnamecontroller.dispose();
     lastnamecontroller.dispose();
     phnumbercontroller.dispose();
+    selectedindex = null;
+    // Provider.of<BookingPatientController>(context).selectedtimeList.clear();
     super.dispose();
   }
 
@@ -99,7 +105,7 @@ class _NewBookingsState extends State<NewBookings> {
               varprovider.patientBookingModel.list?[0].email ?? "";
           phoneNumber = varprovider.patientBookingModel.list?[0].phn ?? "";
           phnumbercontroller.text = varprovider.patientBookingModel.list?[0].phn
-                  ?.replaceRange(0, 6, "**") ??
+                  ?.replaceRange(0, 6, "******") ??
               "";
           _selectedDepartment = varprovider.patientBookingModel.list?[0].dep;
           _selectedDoctor = varprovider.patientBookingModel.list?[0].doc;
@@ -180,10 +186,10 @@ class _NewBookingsState extends State<NewBookings> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                          validator: (name) => name!.length < 3
+                          validator: (name) => name!.length < 5
                               ? "Name should be at least 3 characters"
                               : null,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          //  autovalidateMode: AutovalidateMode.onUserInteraction,
                         ),
                         const SizedBox(height: 25.0),
                         TextFormField(
@@ -327,9 +333,6 @@ class _NewBookingsState extends State<NewBookings> {
                             ),
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 15),
-                            suffix: TextButton(
-                                onPressed: () {},
-                                child: const Text("check availability")),
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -356,6 +359,10 @@ class _NewBookingsState extends State<NewBookings> {
                             await functionprovider.doctorTime(varprovider
                                 .doctorsmodelclass.list?[itemid].empcode);
                             _selectedTimeSlot = varprovider.timeList[0];
+                            await functionprovider.doctorTimeSlots(
+                                empid: varprovider
+                                    .doctorsmodelclass.list?[itemid].empcode,
+                                dept: _selectedDepartment);
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -363,22 +370,6 @@ class _NewBookingsState extends State<NewBookings> {
                             }
                             return null;
                           },
-                        ),
-                        const SizedBox(height: 25.0),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff0ea69f),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 50.0, vertical: 15.0),
-                          ),
-                          child: const Text(
-                            "Book your slot",
-                            style: TextStyle(color: Colors.white),
-                          ),
                         ),
                         const SizedBox(height: 25.0),
                         TextFormField(
@@ -425,35 +416,126 @@ class _NewBookingsState extends State<NewBookings> {
                           onTap: () => _selectDate(context),
                         ),
                         const SizedBox(height: 25.0),
-                        DropdownButtonFormField<String>(
-                          value: _selectedTimeSlot,
-                          hint: const Text('Select Time Slot'),
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 15),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
+                        // DropdownButtonFormField<String>(
+                        //   value: _selectedTimeSlot,
+                        //   hint: const Text('Select Time Slot'),
+                        //   decoration: InputDecoration(
+                        //     contentPadding: const EdgeInsets.symmetric(
+                        //         vertical: 15, horizontal: 15),
+                        //     filled: true,
+                        //     fillColor: Colors.white,
+                        //     border: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(8.0),
+                        //     ),
+                        //   ),
+                        //   items: varprovider.timeList.map((String value) {
+                        //     bool isAvailable = varprovider.selectedtimeList
+                        //         .contains(varprovider.timeList
+                        //             .indexOf(value)
+                        //             .toString());
+
+                        //     return DropdownMenuItem<String>(
+                        //       value: value,
+                        //       enabled:
+                        //           isAvailable, // Disable if the slot is not available
+                        //       child: Text(
+                        //         value,
+                        //         style: TextStyle(
+                        //           color: isAvailable
+                        //               ? Colors.green
+                        //               : Colors
+                        //                   .amber, // Use Colors.amber for unavailable items
+                        //         ),
+                        //       ),
+                        //     );
+                        //   }).toList(),
+                        //   onChanged: (newValue) {
+                        //     if (varprovider.selectedtimeList.contains(
+                        //         varprovider.timeList
+                        //             .indexOf(newValue!)
+                        //             .toString())) {
+                        //       setState(() {
+                        //         _selectedTimeSlot = newValue;
+                        //       });
+                        //     }
+                        //     for (var i = 0;
+                        //         i < varprovider.timeList.length;
+                        //         i++) {
+                        //       if (varprovider.timeList[i] == newValue) {
+                        //         counter = i;
+                        //       }
+                        //     }
+                        //   },
+                        //   validator: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return 'Please select a time slot';
+                        //     }
+                        //     return null;
+                        //   },
+                        // ),
+                        Wrap(
+                          children: List.generate(
+                            varprovider.timeList.length,
+                            (index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  //
+                                  // print(selectedindex);
+                                  // print(varprovider.selectedtimeList[selectedindex!]);
+                                  //
+                                  // ------------------------------------------
+                                  varprovider.selectedtimeList
+                                          .contains(index.toString())
+                                      ? setState(() {
+                                          selectedindex = index;
+                                        })
+                                      : setState(() {
+                                          selectedindex = null;
+                                        });
+                                  log(varprovider.timeList[selectedindex!]);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 3),
+                                  child: Container(
+                                    padding: EdgeInsets.all(7),
+                                    decoration: BoxDecoration(
+                                      // color:
+                                      // index == selectedindex
+                                      //     ? Colors.grey
+                                      //     : Colors.green,
+                                      // color: isSelected
+                                      //     ? Colors.red[700] // Selected color
+                                      //     : Colors.green, // Default color
+                                      border: Border.all(
+                                          width: 3,
+                                          color: varprovider.selectedtimeList
+                                                  .contains(index.toString())
+                                              ? selectedindex == index
+                                                  ? Colors.red
+                                                  : const Color.fromARGB(
+                                                      255, 72, 184, 76)
+                                              : Colors.grey),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(7)),
+                                    ),
+                                    child: Text(
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: varprovider.selectedtimeList
+                                                  .contains(index.toString())
+                                              ? selectedindex == index
+                                                  ? Colors.red
+                                                  : const Color.fromARGB(
+                                                      255, 72, 184, 76)
+                                              : Colors.grey),
+                                      varprovider.timeList[index],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                          items: varprovider.timeList.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedTimeSlot = newValue;
-                            });
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please select a time slot';
-                            }
-                            return null;
-                          },
                         ),
                         const SizedBox(height: 15.0),
                         Center(
@@ -467,11 +549,13 @@ class _NewBookingsState extends State<NewBookings> {
                                   eMail: _emailController.text.trim(),
                                   phNum: phoneNumber,
                                   dept: _selectedDepartment!,
+                                  docname: _selectedDoctor!,
                                   docId: _selectedDoctorId!,
                                   reason: _reasonController.text.trim(),
                                   date: _dateController.text.trim(),
-                                  time: _selectedTimeSlot!,
+                                  time: varprovider.timeList[selectedindex!],
                                 );
+
                                 varprovider.isSuccessful == true
                                     ? showDialog(
                                         context: context,
@@ -490,6 +574,11 @@ class _NewBookingsState extends State<NewBookings> {
                                                   firstnamecontroller.clear();
                                                   lastnamecontroller.clear();
                                                   phnumbercontroller.clear();
+                                                  varprovider.deptList.clear();
+                                                  varprovider.selectedtimeList
+                                                      .clear();
+                                                  varprovider.timeList.clear();
+                                                  selectedindex = null;
                                                   Navigator.pop(context);
                                                 },
                                               )
