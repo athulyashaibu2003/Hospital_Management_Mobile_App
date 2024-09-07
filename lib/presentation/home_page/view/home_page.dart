@@ -24,14 +24,14 @@ class _HomePageState extends State<HomePage> {
       'icon': "assets/images/3d-render-calendar-page-with-green-tick-icon.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': const NewBookings()
+      'page': const AppointmentBooking()
     },
     {
       'title': 'new_bookings',
       'icon': "assets/images/3886130.jpg",
       'bgColor': Colors.white,
       'textColor': Colors.black,
-      'page': const NewBookings()
+      'page': const AppointmentBooking()
     },
     {
       'title': 'reminders',
@@ -89,6 +89,24 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: const Text(
                     "മലയാളം",
+                    style: TextStyle(color: ColorConstants.mainBlue),
+                  ).tr()),
+              TextButton(
+                  onPressed: () {
+                    LocalizationChecker.changeLanguge(
+                        context: context, locale: const Locale('knn', 'IN'));
+                  },
+                  child: const Text(
+                    "konkini",
+                    style: TextStyle(color: ColorConstants.mainBlue),
+                  ).tr()),
+              TextButton(
+                  onPressed: () {
+                    LocalizationChecker.changeLanguge(
+                        context: context, locale: const Locale('tcy', 'IN'));
+                  },
+                  child: const Text(
+                    "tulu",
                     style: TextStyle(color: ColorConstants.mainBlue),
                   ).tr()),
             ],

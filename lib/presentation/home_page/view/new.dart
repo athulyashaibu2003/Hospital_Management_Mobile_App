@@ -163,7 +163,10 @@ class _AppointmentBookingState extends State<AppointmentBooking> {
                   TextFormField(
                     controller: firstnamecontroller,
                     decoration: InputDecoration(
-                        hintText: 'firstname', border: OutlineInputBorder()),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Firstname',
+                        border: OutlineInputBorder()),
                   ),
 
                   const SizedBox(height: 20.0),
@@ -234,9 +237,9 @@ class _AppointmentBookingState extends State<AppointmentBooking> {
                       ),
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                      suffix: TextButton(
-                          onPressed: () {},
-                          child: const Text("check availability")),
+                      // suffix: TextButton(
+                      //     onPressed: () {},
+                      //     child: const Text("check availability")),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
