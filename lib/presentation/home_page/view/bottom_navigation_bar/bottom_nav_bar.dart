@@ -107,110 +107,114 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           ),
         ),
       ),
-      floatingActionButton: myCurrentIndex == 0
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Ambulance floating button
-                FloatingActionButton(
-                  shape: const CircleBorder(),
-                  child: Image(image: AssetImage("assets/images/49990.jpg")),
-                  // backgroundImage: AssetImage("assets/images/49990.jpg"),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 385),
+        child: myCurrentIndex == 0
+            ? Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Ambulance floating button
+                  FloatingActionButton(
+                    shape: const CircleBorder(),
+                    child: Image(image: AssetImage("assets/images/49990.jpg")),
+                    // backgroundImage: AssetImage("assets/images/49990.jpg"),
 
-                  // child: Image.asset(
-                  //   "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
-                  //   fit: BoxFit.fill,
-                  // ),
-                  onPressed: () async {
-                    await sosFunctionProvider.Ambulance(patientDetailsProvider);
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) {
-                        Future.delayed(
-                          Duration(milliseconds: 2000),
-                          () {
-                            Navigator.pop(context);
-                          },
-                        );
-                        return AlertDialog(
-                          title: Text("Help is on the way"),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CircleAvatar(
-                                radius: 35,
-                                backgroundImage: NetworkImage(
-                                    'https://sa1s3optim.patientpop.com/assets/images/provider/photos/2520626.jpg'),
-                              )
-                            ],
-                          ),
-                          // content: Column(
-                          //   mainAxisSize: MainAxisSize.min,
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     Text(patientDetailsProvider
-                          //             .searchModel.list?[0].relcontact ??
-                          //         ''),
-                          //     Text(patientDetailsProvider
-                          //             .searchModel.list?[0].reltype ??
-                          //         ''),
-                          //   ],
-                          // ),
-                        );
-                      },
-                    );
-                  },
-                ),
-                SizedBox(height: 10),
-                // SOS floating button
-                FloatingActionButton(
-                  shape: const CircleBorder(),
-                  child: const CircleAvatar(
-                    radius: 45,
-                    backgroundImage: AssetImage(
-                        "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg"),
+                    // child: Image.asset(
+                    //   "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
+                    //   fit: BoxFit.fill,
+                    // ),
+                    onPressed: () async {
+                      await sosFunctionProvider.Ambulance(
+                          patientDetailsProvider);
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          Future.delayed(
+                            Duration(milliseconds: 2000),
+                            () {
+                              Navigator.pop(context);
+                            },
+                          );
+                          return AlertDialog(
+                            title: Text("Help is on the way"),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  radius: 35,
+                                  backgroundImage: NetworkImage(
+                                      'https://sa1s3optim.patientpop.com/assets/images/provider/photos/2520626.jpg'),
+                                )
+                              ],
+                            ),
+                            // content: Column(
+                            //   mainAxisSize: MainAxisSize.min,
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: [
+                            //     Text(patientDetailsProvider
+                            //             .searchModel.list?[0].relcontact ??
+                            //         ''),
+                            //     Text(patientDetailsProvider
+                            //             .searchModel.list?[0].reltype ??
+                            //         ''),
+                            //   ],
+                            // ),
+                          );
+                        },
+                      );
+                    },
                   ),
-                  // child: Image.asset(
-                  //   "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
-                  //   fit: BoxFit.fill,
-                  // ),
-                  onPressed: () async {
-                    await sosFunctionProvider.callSos(patientDetailsProvider);
+                  SizedBox(height: 10),
+                  // SOS floating bu10tton
+                  FloatingActionButton(
+                    shape: const CircleBorder(),
+                    child: const CircleAvatar(
+                      radius: 45,
+                      backgroundImage: AssetImage(
+                          "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg"),
+                    ),
+                    // child: Image.asset(
+                    //   "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
+                    //   fit: BoxFit.fill,
+                    // ),
+                    onPressed: () async {
+                      await sosFunctionProvider.callSos(patientDetailsProvider);
 
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) {
-                        Future.delayed(
-                          Duration(milliseconds: 2000),
-                          () {
-                            Navigator.pop(context);
-                          },
-                        );
-                        return AlertDialog(
-                          title: Text("Your SOS Alert have been sent"),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(patientDetailsProvider
-                                      .searchModel.list?[0].relcontact ??
-                                  ''),
-                              Text(patientDetailsProvider
-                                      .searchModel.list?[0].reltype ??
-                                  ''),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
-            )
-          : null,
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          Future.delayed(
+                            Duration(milliseconds: 2000),
+                            () {
+                              Navigator.pop(context);
+                            },
+                          );
+                          return AlertDialog(
+                            title: Text("Your SOS Alert have been sent"),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(patientDetailsProvider
+                                        .searchModel.list?[0].relcontact ??
+                                    ''),
+                                Text(patientDetailsProvider
+                                        .searchModel.list?[0].reltype ??
+                                    ''),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              )
+            : null,
+      ),
       body: pages[myCurrentIndex],
     );
   }

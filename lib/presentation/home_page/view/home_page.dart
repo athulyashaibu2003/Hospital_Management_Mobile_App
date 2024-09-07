@@ -91,24 +91,6 @@ class _HomePageState extends State<HomePage> {
                     "മലയാളം",
                     style: TextStyle(color: ColorConstants.mainBlue),
                   ).tr()),
-              TextButton(
-                  onPressed: () {
-                    LocalizationChecker.changeLanguge(
-                        context: context, locale: const Locale('knn', 'IN'));
-                  },
-                  child: const Text(
-                    "konkini",
-                    style: TextStyle(color: ColorConstants.mainBlue),
-                  ).tr()),
-              TextButton(
-                  onPressed: () {
-                    LocalizationChecker.changeLanguge(
-                        context: context, locale: const Locale('tcy', 'IN'));
-                  },
-                  child: const Text(
-                    "tulu",
-                    style: TextStyle(color: ColorConstants.mainBlue),
-                  ).tr()),
             ],
           ),
         ],
