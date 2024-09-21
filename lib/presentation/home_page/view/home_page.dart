@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/search_screen_controller.dart';
+import 'package:hms_project/controller/sos_controller.dart';
 import 'package:hms_project/presentation/home_page/new_patient_registrationscreen/new_patient_registrationscreen.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/home_page/reminders.dart';
@@ -52,11 +55,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var patientDetailsProvider = Provider.of<SearchScreenController>(context);
+    var sosFunctionProvider =
+        Provider.of<SosController>(context, listen: false);
 
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
-        backgroundColor: ColorConstants.mainwhite,
+        backgroundColor: ColorConstants.mainBlue,
         leading: Image.asset(
           "assets/images/highland_logo.jpeg",
         ),
@@ -71,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: const Text(
                     "English",
-                    style: TextStyle(color: ColorConstants.mainBlue),
+                    style: TextStyle(color: ColorConstants.mainOrange),
                   ).tr()),
               TextButton(
                   onPressed: () {
@@ -80,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: const Text(
                     "ಕನ್ನಡ",
-                    style: TextStyle(color: ColorConstants.mainBlue),
+                    style: TextStyle(color: ColorConstants.mainOrange),
                   ).tr()),
               TextButton(
                   onPressed: () {
@@ -89,25 +94,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: const Text(
                     "മലയാളം",
-                    style: TextStyle(color: ColorConstants.mainBlue),
-                  ).tr()),
-              TextButton(
-                  onPressed: () {
-                    LocalizationChecker.changeLanguge(
-                        context: context, locale: const Locale('knn', 'IN'));
-                  },
-                  child: const Text(
-                    "konkini",
-                    style: TextStyle(color: ColorConstants.mainBlue),
-                  ).tr()),
-              TextButton(
-                  onPressed: () {
-                    LocalizationChecker.changeLanguge(
-                        context: context, locale: const Locale('tcy', 'IN'));
-                  },
-                  child: const Text(
-                    "tulu",
-                    style: TextStyle(color: ColorConstants.mainBlue),
+                    style: TextStyle(color: ColorConstants.mainOrange),
                   ).tr()),
             ],
           ),
@@ -147,11 +134,11 @@ class _HomePageState extends State<HomePage> {
                                       "".tr(),
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w900,
-                                      color: ColorConstants.mainBlue,
+                                      color: ColorConstants.mainOrange,
                                       fontSize: 20),
                                 ),
-                                const Icon(Icons.arrow_drop_down_outlined,
-                                    color: ColorConstants.mainBlue)
+                                // const Icon(Icons.arrow_drop_down_outlined,
+                                //     color: ColorConstants.mainBlue)
                               ],
                             )
                           ],
@@ -181,7 +168,8 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: const Text(
                               "Feedback",
-                              style: TextStyle(color: ColorConstants.mainBlue),
+                              style:
+                                  TextStyle(color: ColorConstants.mainOrange),
                             ))
                       ],
                     ),
@@ -193,7 +181,15 @@ class _HomePageState extends State<HomePage> {
                         height: 160,
                         width: MediaQuery.sizeOf(context).width * .95,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            // gradient: LinearGradient(
+                            //   colors: [
+                            //     ColorConstants.mainOrange,
+                            //     ColorConstants.mainwhite
+                            //   ],
+                            //   begin: Alignment.bottomRight,
+                            //   end: Alignment.topLeft,
+                            // ),
+                            color: ColorConstants.mainOrange.withAlpha(2),
                             borderRadius: BorderRadius.circular(15)),
                       ),
                       Padding(
@@ -228,8 +224,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                                 child: const Text(
                                   "Book Appointment",
-                                  style:
-                                      TextStyle(color: ColorConstants.mainBlue),
+                                  style: TextStyle(
+                                      color: ColorConstants.mainOrange),
                                 ).tr())
                           ],
                         ),
@@ -238,10 +234,164 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      "Our Services".tr(),
-                      style: const TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.w800),
+                    Row(
+                      children: [
+                        Text(
+                          "Our Services".tr(),
+                          style: const TextStyle(
+                              color: ColorConstants.mainOrange,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w800),
+                        ),
+                        Spacer(),
+                        InkWell(
+                          child: CircleAvatar(
+                            //     backgroundColor: ColorConstants.mainOrange,
+                            radius: 30,
+                            backgroundImage: AssetImage(
+                                "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg"),
+                          ),
+                          onTap: () async {
+                            Timer? sosTimer;
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                // Start a timer that will send the SOS after 5 seconds
+                                sosTimer =
+                                    Timer(const Duration(seconds: 5), () {
+                                  // SOS action is triggered after 5 seconds
+                                  sosFunctionProvider
+                                      .callSos(patientDetailsProvider);
+
+                                  // Close the dialog after sending the SOS
+                                  if (Navigator.canPop(context)) {
+                                    Navigator.pop(context);
+                                  }
+
+                                  // Optionally, show a confirmation that the SOS was sent
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => const AlertDialog(
+                                      title: Text("SOS Alert Sent"),
+                                      content: Text(
+                                          "Your SOS alert has been successfully sent."),
+                                    ),
+                                  );
+                                });
+
+                                return AlertDialog(
+                                  title: const Text("Sending SOS..."),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                          "SOS will be sent in 5 seconds."),
+                                      Text(patientDetailsProvider.searchModel
+                                              .list?[0].relcontact ??
+                                          ''),
+                                      Text(patientDetailsProvider
+                                              .searchModel.list?[0].reltype ??
+                                          ''),
+                                    ],
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        // Cancel the SOS by stopping the timer
+                                        if (sosTimer != null &&
+                                            sosTimer!.isActive) {
+                                          sosTimer!.cancel();
+                                        }
+                                        // Close the dialog
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text("Cancel"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        InkWell(
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: AssetImage(
+                                "assets/images/how-to-draw-an-ambulance.jpg"),
+                          ),
+                          //import 'dart:async'; // Import this if not already done
+
+                          onTap: () async {
+                            Timer? ambulanceTimer;
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                // Start a timer that will send the ambulance request after 5 seconds
+                                ambulanceTimer =
+                                    Timer(const Duration(seconds: 5), () {
+                                  // Ambulance action is triggered after 5 seconds
+                                  sosFunctionProvider.Ambulance(
+                                      patientDetailsProvider);
+
+                                  // Close the dialog after sending the ambulance request
+                                  if (Navigator.canPop(context)) {
+                                    Navigator.pop(context);
+                                  }
+
+                                  // Optionally, show a confirmation that the ambulance request was sent
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => const AlertDialog(
+                                      title: Text("Ambulance Alert Sent"),
+                                      content: Text("Help is on the way."),
+                                    ),
+                                  );
+                                });
+
+                                return AlertDialog(
+                                  title: const Text("Requesting Ambulance..."),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                          "Ambulance will be requested in 5 seconds."),
+                                      CircleAvatar(
+                                        radius: 35,
+                                        backgroundImage: const NetworkImage(
+                                            'https://sa1s3optim.patientpop.com/assets/images/provider/photos/2520626.jpg'),
+                                      ),
+                                    ],
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        // Cancel the ambulance request by stopping the timer
+                                        if (ambulanceTimer != null &&
+                                            ambulanceTimer!.isActive) {
+                                          ambulanceTimer!.cancel();
+                                        }
+                                        // Close the dialog
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text("Cancel"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        )
+                      ],
                     ),
                     GridView.builder(
                       shrinkWrap: true,
@@ -268,12 +418,13 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(16.0),
                               gradient: LinearGradient(
                                 colors: [
-                                  items[index]['bgColor'],
+                                  ColorConstants.mainOrange,
                                   items[index]['bgColor'].withOpacity(0.8),
                                 ],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
+                              color: ColorConstants.mainOrange,
                               boxShadow: [
                                 BoxShadow(
                                   color:
