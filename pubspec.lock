@@ -193,10 +193,10 @@ packages:
     dependency: transitive
     description:
       name: http_parser
-      sha256: "40f592dd352890c3b60fec1b68e786cefb9603e05ff303dbc4dda49b304ecdf4"
+      sha256: "2aa08ce0341cc9b354a498388e30986515406668dbcc4f7c950c3e715496693b"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.0"
+    version: "4.0.2"
   image_picker:
     dependency: "direct main"
     description:
@@ -209,10 +209,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_android
-      sha256: c0a6763d50b354793d0192afd0a12560b823147d3ded7c6b77daf658fa05cc85
+      sha256: "8c5abf0dcc24fe6e8e0b4a5c0b51a5cf30cefdf6407a3213dae61edc75a70f56"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.12+13"
+    version: "0.8.12+12"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -571,5 +571,5 @@ packages:
     source: hosted
     version: "1.0.4"
 sdks:
-  dart: ">=3.5.0 <4.0.0"
-  flutter: ">=3.24.0"
+  dart: ">=3.5.0-178.0.dev <4.0.0"
+  flutter: ">=3.22.0"

@@ -144,26 +144,22 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         // const Spacer(),
-                        Expanded(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.notifications_outlined,
-                              // size: 40,
-                            ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.notifications_outlined,
+                            // size: 40,
                           ),
                         ),
-                        Expanded(
-                          child: IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const NewPatientRegistrationscreen()));
-                              },
-                              icon: const Icon(Icons.add)),
-                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const NewPatientRegistrationscreen()));
+                            },
+                            icon: const Icon(Icons.add)),
                         TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -250,10 +246,24 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Spacer(),
                         InkWell(
-                          child: CircleAvatar(
-                            //     backgroundColor: ColorConstants.mainOrange,
-                            radius: 30,
-                            backgroundImage: AssetImage(
+                          child: Container(
+                            height: 50,
+                            width: 50,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.orange.withOpacity(
+                                      0.5), // Adjust the shadow color as needed
+                                  spreadRadius: 3,
+                                  blurRadius: 10,
+                                  offset: Offset(
+                                      0, 5), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Image.asset(
                                 "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg"),
                           ),
                           onTap: () async {
@@ -326,9 +336,26 @@ class _HomePageState extends State<HomePage> {
                           width: 15,
                         ),
                         InkWell(
-                          child: CircleAvatar(
-                            radius: 30,
-                            backgroundImage: AssetImage(
+                          child: Container(
+                            // padding: EdgeInsets.all(10),
+                            height: 50,
+                            width: 50,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.red),
+                              //  shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.orange
+                                      .withOpacity(0.5), // Adjust shadow color
+                                  spreadRadius: 3,
+                                  blurRadius: 10,
+                                  offset:
+                                      Offset(0, 5), // Position of the shadow
+                                ),
+                              ],
+                            ),
+                            child: Image.asset(
                                 "assets/images/how-to-draw-an-ambulance.jpg"),
                           ),
                           //import 'dart:async'; // Import this if not already done
@@ -397,6 +424,9 @@ class _HomePageState extends State<HomePage> {
                           },
                         )
                       ],
+                    ),
+                    SizedBox(
+                      height: 15,
                     ),
                     GridView.builder(
                       shrinkWrap: true,
