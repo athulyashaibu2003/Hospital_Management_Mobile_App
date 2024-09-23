@@ -1,9 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
 import 'package:hms_project/presentation/doctor_app/bottom_nav_screen.dart';
-import 'package:hms_project/presentation/doctor_app/doctor_homescreen.dart';
-import 'package:hms_project/presentation/home_page/view/doctor_home_screen.dart';
-import 'package:hms_project/presentation/home_page/view/home_page.dart';
+import 'package:hms_project/presentation/doctor_app/forget_password_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
@@ -21,19 +21,20 @@ class _DoctorLoginpageState extends State<DoctorLoginpage> {
     if (loginusernamecontroller.text.isNotEmpty &&
         loginpasswordcontroller.text.isNotEmpty) {
       try {
-        String uri =
-            "https://cybot.avanzosolutions.in/hms/loginverifypatient.php";
-        var res = await http.post(Uri.parse(uri), body: {
-          "loginusernamecontroller": loginusernamecontroller.text,
-          "loginpasswordcontroller": loginpasswordcontroller.text
-        });
+        // String uri = "https://cybot.avanzosolutions.in/hms/useridpass.php";
+        // var res = await http.post(Uri.parse(uri), body: {
+        //   "loginusernamecontroller": loginusernamecontroller.text,
+        //   "loginpasswordcontroller": loginpasswordcontroller.text
+        // });
+        // log(res.body);
+        // log(res.statusCode.toString());
+        doctorFunctionProvider.patientdata(
+            password: loginpasswordcontroller.text,
+            username: loginusernamecontroller.text);
+        if (doctorFunctionProvider.userCredentialsModel.id != null) {
+          // print("Record inserted");
 
-        if (res.statusCode == 200) {
-          print("Record inserted");
-          doctorFunctionProvider.patientdata(
-              password: loginpasswordcontroller.text,
-              username: loginusernamecontroller.text);
-          print(res.body);
+          // print(res.body);
           // Save the login state and credentials
           //   box1.put('isLoggedIn', true);
           // if (isChecked) {
@@ -176,6 +177,10 @@ class _DoctorLoginpageState extends State<DoctorLoginpage> {
                   const SizedBox(height: 20.0),
                   TextButton(
                     onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordScreen()));
                       // Implement forgot password functionality here
                     },
                     child: const Text(

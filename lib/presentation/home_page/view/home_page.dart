@@ -143,13 +143,17 @@ class _HomePageState extends State<HomePage> {
                             )
                           ],
                         ),
-                        const Spacer(),
-                        IconButton(
+                       // const Spacer(),
+                        Expanded(
+                          child:IconButton(
                             onPressed: () {},
                             icon: const Icon(
                               Icons.notifications_outlined,
-                              size: 40,
-                            )),
+                              // size: 40,
+                            ),),
+                        ),
+                         Expanded(
+                          child:
                         IconButton(
                             onPressed: () {
                               Navigator.push(
@@ -158,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                                       builder: (context) =>
                                           const NewPatientRegistrationscreen()));
                             },
-                            icon: const Icon(Icons.add)),
+                            icon: const Icon(Icons.add)),),
                         TextButton(
                             onPressed: () {
                               Navigator.push(

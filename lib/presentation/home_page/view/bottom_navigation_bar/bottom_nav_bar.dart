@@ -33,7 +33,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     //     Provider.of<SosController>(context, listen: false);
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Container(    
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
@@ -51,7 +51,9 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             type: BottomNavigationBarType.fixed,
             onTap: (index) {
               setState(() {});
-              myCurrentIndex = index;
+            myCurrentIndex = index;
+            print(index);
+            print(myCurrentIndex);
               if (myCurrentIndex == 3) {
                 // Settings is at index 2
                 showDialog(
@@ -64,7 +66,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                           onPressed: () {
                             setState(() {});
                             myCurrentIndex = 0;
-                            Navigator.of(context).pop();
+                          Navigator.of(context).pop();
                           },
                           child: const Text("Cancel"),
                         ),

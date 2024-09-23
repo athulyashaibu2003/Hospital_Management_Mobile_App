@@ -15,7 +15,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   TextEditingController loginusernamecontroller = TextEditingController();
   TextEditingController passwordconttroller = TextEditingController();
   TextEditingController conpasswordcontroller = TextEditingController();
-  TextEditingController empidcontrolller = TextEditingController();
+  TextEditingController empidcontroller = TextEditingController();
   bool passwordVisible = false;
   final _formkey = GlobalKey<FormState>();
   // String? validateEmail(String? email) {
@@ -29,21 +29,21 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   // }
 
   Future<void> insertrecord() async {
-    if (loginusernamecontroller.text.isNotEmpty ||
-        passwordconttroller.text.isNotEmpty ||
-        empidcontrolller.text.isNotEmpty) {
+    if (empidcontroller.text.isNotEmpty ||
+        loginusernamecontroller.text.isNotEmpty ||
+        passwordconttroller.text.isNotEmpty) {
       try {
         String uri =
             "https://cybot.avanzosolutions.in/hms/forgetpasswordstaff.php";
         var res = await http.post(Uri.parse(uri), body: {
+          "empcodecontroller": empidcontroller.text,
           "usernamecontroller": loginusernamecontroller.text,
           "passwordcontroller": passwordconttroller.text,
-          "empcodecontroller": empidcontrolller.text
         });
-        var response = "success";
+        var response = "Success";
         //  var resp = "WRONG CREDENTIALS";
         //print("${res.body}${passwordconttroller.text}");
-        print("athulya${res.body}");
+        // print("athulya${res.body}");
         if (res.body == response) {
           print("Record inserted");
           ScaffoldMessenger.of(context).showSnackBar(
@@ -114,6 +114,27 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: TextFormField(
                   style: const TextStyle(color: Colors.black),
+                  controller: empidcontroller,
+                  decoration: const InputDecoration(
+                      hintText: "Employee Id",
+                      hintStyle: TextStyle(color: Colors.black54),
+                      border: OutlineInputBorder()),
+                  // validator: (value) {
+                  //   if (value != null && value.length >= 5) {
+                  //     return null;
+                  //   } else {
+                  //     return "Please Enter a Valid Username";
+                  //   }
+                  // }
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.black),
                   controller: loginusernamecontroller,
                   decoration: const InputDecoration(
                       hintText: "User Name",
@@ -146,27 +167,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               const SizedBox(
                 height: 15,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.black),
-                  controller: empidcontrolller,
-                  decoration: const InputDecoration(
-                      hintText: "Employee Id",
-                      hintStyle: TextStyle(color: Colors.black54),
-                      border: OutlineInputBorder()),
-                  // validator: (value) {
-                  //   if (value != null && value.length >= 5) {
-                  //     return null;
-                  //   } else {
-                  //     return "Please Enter a Valid Username";
-                  //   }
-                  // }
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
+
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: TextFormField(

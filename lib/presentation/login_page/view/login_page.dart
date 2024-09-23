@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         });
         print(res.body);
         patientId = res.body;
-        if (res.statusCode == 200) {
+        if (patientId != 'NULL') {
           print(res.body);
           print("Record inserted");
           // Save the login state and credentials

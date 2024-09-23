@@ -7,7 +7,7 @@ import 'package:hms_project/presentation/doctor_app/doctor_homescreen.dart';
 import 'package:hms_project/presentation/doctor_app/doctor_patient_screen.dart';
 import 'package:hms_project/presentation/doctor_app/doctor_settings_screen.dart';
 
-class DoctorBottomNavScreen extends StatefulWidget {
+class DoctorBottomNavScreen extends StatefulWidget { 
   const DoctorBottomNavScreen({super.key});
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
 import 'package:hms_project/controller/doctor_patient_list_controller.dart';
+import 'package:hms_project/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -20,22 +21,33 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
       backgroundColor: Color(0x3006a1a0),
       appBar: AppBar(
         backgroundColor: Color(0x3006a1a0),
-        leading: Icon(
-          Icons.handshake,
-          color: Colors.amber,
-          size: 30,
+        // leading: Image.asset(
+        //   "assets/images/Emoji_Wave_Hand_.png",
+        //   fit: BoxFit.contain,
+        //   height: 10,
+        // ),
+        title: Row(
+          children: [
+            Text(
+              "${Utils.getGreetingMessage()}, ",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              doctorProvider.userCredentialsModel.name ?? '',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-        title: Text(doctorProvider.userCredentialsModel.name ?? ''),
-        actions: [
-          CircleAvatar(
-            radius: 25,
-            backgroundImage: NetworkImage(
-                "https://discoverymood.com/wp-content/uploads/2020/04/Mental-Strong-Women-min.jpg"),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-        ],
+        // actions: [
+        //   CircleAvatar(
+        //     radius: 25,
+        //     backgroundImage: NetworkImage(
+        //         "https://discoverymood.com/wp-content/uploads/2020/04/Mental-Strong-Women-min.jpg"),
+        //   ),
+        //   SizedBox(
+        //     width: 10,
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(
