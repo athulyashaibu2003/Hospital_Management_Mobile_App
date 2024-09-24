@@ -143,7 +143,8 @@ class _HomePageState extends State<HomePage> {
                             )
                           ],
                         ),
-                        // const Spacer(),
+                         const Spacer(),
+                         
                         IconButton(
                           onPressed: () {},
                           icon: const Icon(
@@ -160,18 +161,8 @@ class _HomePageState extends State<HomePage> {
                                           const NewPatientRegistrationscreen()));
                             },
                             icon: const Icon(Icons.add)),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => FeedbackForm()));
-                            },
-                            child: const Text(
-                              "Feedback",
-                              style:
-                                  TextStyle(color: ColorConstants.mainOrange),
-                            ))
+                            
+                     
                       ],
                     ),
                     const SizedBox(
@@ -245,27 +236,47 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.w800),
                         ),
                         Spacer(),
+                             TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FeedbackForm()));
+                            },
+                            child: const Text(
+                              "Feedback",
+                              style:
+                                  TextStyle(color: ColorConstants.mainOrange),
+                            )),
                         InkWell(
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.orange.withOpacity(
-                                      0.5), // Adjust the shadow color as needed
-                                  spreadRadius: 3,
-                                  blurRadius: 10,
-                                  offset: Offset(
-                                      0, 5), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Image.asset(
-                                "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg"),
-                          ),
+                          child:Container(
+  height: 50,
+  width: 50,
+  clipBehavior: Clip.antiAlias,
+  decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    border: Border.all(
+      color: Colors.red, // Red circular border color
+      width: 2, // Width of the red border
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.orange.withOpacity(0.5), // Adjust the shadow color as needed
+        spreadRadius: 3,
+        blurRadius: 10,
+        offset: Offset(0, 5), // changes position of shadow
+      ),
+    ],
+  ),
+  child: ClipOval(
+    child: Image.asset(
+      "assets/images/1000_F_365248968_49b3zJrClxXKT9hieMstBYbKYKK9Euj8.jpg",
+      fit: BoxFit.cover,
+    ),
+  ),
+),
+
+
                           onTap: () async {
                             Timer? sosTimer;
 
@@ -336,28 +347,34 @@ class _HomePageState extends State<HomePage> {
                           width: 15,
                         ),
                         InkWell(
-                          child: Container(
-                            // padding: EdgeInsets.all(10),
-                            height: 50,
-                            width: 50,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.red),
-                              //  shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.orange
-                                      .withOpacity(0.5), // Adjust shadow color
-                                  spreadRadius: 3,
-                                  blurRadius: 10,
-                                  offset:
-                                      Offset(0, 5), // Position of the shadow
-                                ),
-                              ],
-                            ),
-                            child: Image.asset(
-                                "assets/images/how-to-draw-an-ambulance.jpg"),
-                          ),
+                          child:Container(
+  height: 50,
+  width: 50,
+  clipBehavior: Clip.antiAlias,
+  decoration: BoxDecoration(
+    shape: BoxShape.circle, // Circular shape
+    border: Border.all(
+      color: Colors.red, // Red circular border color
+      width: 2, // Border thickness
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.orange.withOpacity(0.5), // Adjust shadow color
+        spreadRadius: 3,
+        blurRadius: 10,
+        offset: Offset(0, 5), // Position of the shadow
+      ),
+    ],
+  ),
+  child: ClipOval(
+    child: Image.asset(
+      "assets/images/Download Wellington Free Ambulance Cartoon Free Content Clip - Ambulance Clip Art Png Transparent Png (#5283416) - PinClipart.jpg",
+      height:5,
+      fit: BoxFit.fill, // Ensures the image fits within the circular container
+    ),
+  ),
+),
+
                           //import 'dart:async'; // Import this if not already done
 
                           onTap: () async {
@@ -417,12 +434,14 @@ class _HomePageState extends State<HomePage> {
                                       },
                                       child: const Text("Cancel"),
                                     ),
+                                  
                                   ],
                                 );
                               },
                             );
                           },
-                        )
+                        ),
+                        
                       ],
                     ),
                     SizedBox(
