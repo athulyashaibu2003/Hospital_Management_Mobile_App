@@ -60,7 +60,14 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: const Text('Are you sure you want to logout?'),
+                      content: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: const Text(
+                          'Are you sure you want to logout?',
+                          style: TextStyle(
+                              color: ColorConstants.mainBlack, fontSize: 15),
+                        ),
+                      ),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
@@ -68,7 +75,10 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                             myCurrentIndex = 0;
                             Navigator.of(context).pop();
                           },
-                          child: const Text("Cancel"),
+                          child: const Text(
+                            "Cancel",
+                            style: TextStyle(color: ColorConstants.mainBlue),
+                          ),
                         ),
                         TextButton(
                           onPressed: () {
@@ -79,7 +89,10 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                               ),
                             );
                           },
-                          child: const Text("Logout"),
+                          child: const Text(
+                            "Logout",
+                            style: TextStyle(color: ColorConstants.mainBlue),
+                          ),
                         ),
                       ],
                     );

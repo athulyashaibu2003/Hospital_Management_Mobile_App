@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/controller/doctor_name_controller.dart';
+import 'package:hms_project/controller/doctor_patient_list_controller.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/doctor_app/doctor_login_page.dart';
 import 'package:hms_project/presentation/doctor_app/edit_profile_screen.dart';
 import 'package:hms_project/presentation/doctor_app/privacy_and_security_screen.dart';
 import 'package:hms_project/presentation/doctor_app/terms_and_conditions.dart';
 import 'package:hms_project/presentation/login_page/view/login_page.dart';
+import 'package:provider/provider.dart';
 
 class DoctorSettingsScreen extends StatefulWidget {
   const DoctorSettingsScreen({super.key});
@@ -16,6 +19,10 @@ class DoctorSettingsScreen extends StatefulWidget {
 class _DoctorSettingsScreenState extends State<DoctorSettingsScreen> {
   @override
   Widget build(BuildContext context) {
+    var doctorProvider = Provider.of<DoctorNameController>(context);
+    // var patientDetailsProvider =
+    //     Provider.of<DoctorPatientListController>(context);
+
     return Scaffold(
       body: SafeArea(
         child: Column(children: [
@@ -48,7 +55,9 @@ class _DoctorSettingsScreenState extends State<DoctorSettingsScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Dr.Christiana Johnson"),
+                      Text(
+                        doctorProvider.userCredentialsModel.name ?? '',
+                      ),
                       Text("doctor@highland.com")
                     ],
                   )

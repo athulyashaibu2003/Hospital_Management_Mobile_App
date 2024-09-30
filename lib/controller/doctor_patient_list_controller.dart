@@ -7,15 +7,18 @@ import 'package:http/http.dart' as http;
 
 class DoctorPatientListController with ChangeNotifier {
   List<DoctorPatientDetailsModel> patientDetailsList = [];
-  Future<void> docotorPatientdata() async {
+  Future<void> docotorPatientdata({required String docid, String? date}) async {
+    patientDetailsList.clear();
+
     String uri =
         "https://cybot.avanzosolutions.in/hms/doctorpatientdetails.php";
     try {
-      var res = await http.get(
-        Uri.parse(uri),
-      );
-      // log(res.body);
-      // log(jsonDecode(res.body).toString());
+      var res = await http.post(Uri.parse(uri), body: {
+        'doctoridcontroller': docid,
+        'datecontroller': date.toString()
+      });
+      log(res.body);
+      log(jsonDecode(res.body).toString());
       List<dynamic> dataList = jsonDecode(res.body);
       patientDetailsList = dataList
           .map(

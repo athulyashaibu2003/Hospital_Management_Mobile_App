@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
 import 'package:hms_project/presentation/doctor_app/bottom_nav_screen.dart';
 import 'package:hms_project/presentation/doctor_app/forget_password_screen.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class DoctorLoginpage extends StatefulWidget {
@@ -28,7 +25,7 @@ class _DoctorLoginpageState extends State<DoctorLoginpage> {
         // });
         // log(res.body);
         // log(res.statusCode.toString());
-        doctorFunctionProvider.patientdata(
+        await doctorFunctionProvider.patientdata(
             password: loginpasswordcontroller.text,
             username: loginusernamecontroller.text);
         if (doctorFunctionProvider.userCredentialsModel.id != null) {
@@ -148,18 +145,12 @@ class _DoctorLoginpageState extends State<DoctorLoginpage> {
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
                         insertrecord(doctorFunctionProvider);
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) =>
-                        //             const DoctorBottomNavScreen()));
                       }
                       // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => HomePage(),
-                      //   ),
-                      // );
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) =>
+                      //             const DoctorBottomNavScreen()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff0ea69f),

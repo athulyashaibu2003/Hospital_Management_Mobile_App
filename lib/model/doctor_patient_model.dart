@@ -1,4 +1,4 @@
-// To parse this JSON data, do
+/// To parse this JSON data, do
 //
 //     final doctorPatientDetailsModel = doctorPatientDetailsModelFromJson(jsonString);
 
@@ -20,6 +20,7 @@ class DoctorPatientDetailsModel {
   String? guardian;
   dynamic reltype;
   String? relnumber;
+  String? date;
 
   DoctorPatientDetailsModel({
     this.id,
@@ -31,6 +32,7 @@ class DoctorPatientDetailsModel {
     this.guardian,
     this.reltype,
     this.relnumber,
+    this.date,
   });
 
   factory DoctorPatientDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -44,6 +46,7 @@ class DoctorPatientDetailsModel {
         guardian: json["guardian"],
         reltype: json["reltype"],
         relnumber: json["relnumber"],
+        date: json["date"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -56,5 +59,6 @@ class DoctorPatientDetailsModel {
         "guardian": guardian,
         "reltype": reltype,
         "relnumber": relnumber,
+        "date": date,
       };
 }

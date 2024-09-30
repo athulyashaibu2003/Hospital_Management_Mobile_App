@@ -27,7 +27,7 @@ class PatientProfileScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Jane Doe',
+                      'SANTHA 56Y',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

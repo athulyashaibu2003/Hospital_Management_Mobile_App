@@ -4,6 +4,7 @@ import 'package:hms_project/controller/booking_patient_controller.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
 import 'package:hms_project/controller/doctor_patient_list_controller.dart';
 import 'package:hms_project/controller/new_controller.dart';
+import 'package:hms_project/controller/scheduled_appointment_controller.dart';
 import 'package:hms_project/controller/search_screen_controller.dart';
 import 'package:hms_project/controller/sos_controller.dart';
 import 'package:hms_project/presentation/splash_screen/view/splash_screen.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => DoctorPatientListController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ScheduledAppointmentController(),
         ),
       ],
       child: MaterialApp(

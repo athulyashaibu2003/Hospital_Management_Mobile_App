@@ -144,7 +144,6 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
                             decoration: BoxDecoration(
                               // color: Colors.green,
                               color: Colors.white,
-
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
