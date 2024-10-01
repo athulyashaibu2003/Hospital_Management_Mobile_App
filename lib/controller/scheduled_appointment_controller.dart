@@ -18,12 +18,6 @@ class ScheduledAppointmentController with ChangeNotifier {
       });
       log(res.body);
 
-      // appointmentslist = (jsonDecode(res.body) as List)
-      //     .map(
-      //       (json) => DoctorPatientDetailsModel.fromJson(json),
-      //     )
-      //     .toList();
-      // log(appointmentslist.toString());
       List<dynamic> appointmentdatalist = jsonDecode(res.body);
       log('--------------${appointmentdatalist.toString()}');
       appointmentslist = appointmentdatalist

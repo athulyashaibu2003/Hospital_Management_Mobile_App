@@ -15,7 +15,6 @@ class DoctorPatientListController with ChangeNotifier {
     try {
       var res = await http.post(Uri.parse(uri), body: {
         'doctoridcontroller': docid,
-        'datecontroller': date.toString()
       });
       log(res.body);
       log(jsonDecode(res.body).toString());

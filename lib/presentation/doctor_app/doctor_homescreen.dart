@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
+import 'package:hms_project/controller/doctor_patient_list_controller.dart';
+import 'package:hms_project/controller/scheduled_appointment_controller.dart';
+import 'package:hms_project/model/doctor_patient_model.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -12,9 +17,34 @@ class DoctorHomescreen extends StatefulWidget {
 }
 
 class _DoctorHomescreenState extends State<DoctorHomescreen> {
+  List<DoctorPatientDetailsModel> searchPatientsList = [];
+  fetchdata({required DoctorNameController doctorProvider}) async {
+    await Provider.of<DoctorPatientListController>(context, listen: false)
+        .docotorPatientdata(docid: doctorProvider.userCredentialsModel.id!);
+    setState(() {});
+    searchPatientsList = List<DoctorPatientDetailsModel>.from(
+        Provider.of<DoctorPatientListController>(context, listen: false)
+            .patientDetailsList);
+    log(searchPatientsList.toString());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchdata(
+      doctorProvider: Provider.of<DoctorNameController>(context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var doctorProvider = Provider.of<DoctorNameController>(context);
+    // var appointdeailsprovider =
+    //     Provider.of<ScheduledAppointmentController>(context);
+
+    // var selectedAppointments = appointdeailsprovider.appointmentslist;
+    // var totalAppointments = selectedAppointments.length;
+
     return Scaffold(
       backgroundColor: Color(0x3006a1a0),
       appBar: AppBar(
@@ -53,7 +83,7 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
           child: Column(
             children: [
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,8 +159,9 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
                                 SizedBox(
                                   height: 50,
                                 ),
-                                const Text(
-                                  "103",
+                                Text(
+                                  //  totalAppointments.toString(),
+                                  "",
                                   style: TextStyle(
                                       color: ColorConstants.mainBlack,
                                       fontWeight: FontWeight.bold,
@@ -181,8 +212,8 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
                                 SizedBox(
                                   height: 50,
                                 ),
-                                const Text(
-                                  "33",
+                                Text(
+                                  searchPatientsList.length.toString(),
                                   style: TextStyle(
                                       color: ColorConstants.mainBlack,
                                       fontWeight: FontWeight.bold,
