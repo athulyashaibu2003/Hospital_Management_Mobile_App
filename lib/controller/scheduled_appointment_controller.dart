@@ -10,7 +10,8 @@ class ScheduledAppointmentController with ChangeNotifier {
   List<DatewiseAppointmentsModel> appointmentslist = [];
   Future<void> appointmentsdata(
       {required String docid, required String? date}) async {
-    String uri = "https://cybot.avanzosolutions.in/hms/doctor_patients.php";
+    String uri =
+        "https://cybot.avanzosolutions.in/hms/doctor_appointments_with_date.php";
     try {
       var res = await http.post(Uri.parse(uri), body: {
         "doctoridcontroller": docid,

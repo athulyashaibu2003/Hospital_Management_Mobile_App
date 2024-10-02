@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
 import 'package:hms_project/controller/doctor_patient_list_controller.dart';
-import 'package:hms_project/controller/full_appointment_show_controller';
+import 'package:hms_project/controller/full_appointment_show_controller.dart';
+
 import 'package:hms_project/controller/scheduled_appointment_controller.dart';
 import 'package:hms_project/model/doctor_patient_model.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
@@ -24,6 +25,10 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
         .fullappointmentdata(docid: doctorProvider.userCredentialsModel.id!);
     await Provider.of<DoctorPatientListController>(context, listen: false)
         .docotorPatientdata(docid: doctorProvider.userCredentialsModel.id!);
+    await Provider.of<ScheduledAppointmentController>(context, listen: false)
+        .appointmentsdata(
+            date: DateTime.now().toString(),
+            docid: doctorProvider.userCredentialsModel.id!);
     setState(() {});
     searchPatientsList = List<DoctorPatientDetailsModel>.from(
         Provider.of<DoctorPatientListController>(context, listen: false)
@@ -42,6 +47,9 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
   @override
   Widget build(BuildContext context) {
     var doctorProvider = Provider.of<DoctorNameController>(context);
+    var appointmentprovider = Provider.of<FullAppointmentController>(context);
+    var appointmentwithdateprovider =
+        Provider.of<ScheduledAppointmentController>(context);
     // var appointdeailsprovider =
     //     Provider.of<ScheduledAppointmentController>(context);
 
@@ -111,8 +119,10 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
                                 const SizedBox(
                                   height: 50,
                                 ),
-                                const Text(
-                                  "0",
+                                Text(
+                                  appointmentwithdateprovider
+                                      .appointmentslist.length
+                                      .toString(),
                                   style: TextStyle(
                                       color: ColorConstants.mainBlack,
                                       fontWeight: FontWeight.bold,
@@ -164,7 +174,9 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
                                 ),
                                 Text(
                                   //  totalAppointments.toString(),
-                                  "",
+                                  appointmentprovider
+                                      .fullappointmentslist.length
+                                      .toString(),
                                   style: TextStyle(
                                       color: ColorConstants.mainBlack,
                                       fontWeight: FontWeight.bold,
