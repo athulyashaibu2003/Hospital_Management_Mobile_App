@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
 import 'package:hms_project/controller/doctor_patient_list_controller.dart';
+import 'package:hms_project/controller/full_appointment_show_controller';
 import 'package:hms_project/controller/scheduled_appointment_controller.dart';
 import 'package:hms_project/model/doctor_patient_model.dart';
 import 'package:hms_project/presentation/constants/colorconstants.dart';
@@ -19,6 +20,8 @@ class DoctorHomescreen extends StatefulWidget {
 class _DoctorHomescreenState extends State<DoctorHomescreen> {
   List<DoctorPatientDetailsModel> searchPatientsList = [];
   fetchdata({required DoctorNameController doctorProvider}) async {
+    await Provider.of<FullAppointmentController>(context, listen: false)
+        .fullappointmentdata(docid: doctorProvider.userCredentialsModel.id!);
     await Provider.of<DoctorPatientListController>(context, listen: false)
         .docotorPatientdata(docid: doctorProvider.userCredentialsModel.id!);
     setState(() {});

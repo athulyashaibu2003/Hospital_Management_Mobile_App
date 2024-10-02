@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hms_project/controller/booking_patient_controller.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
 import 'package:hms_project/controller/doctor_patient_list_controller.dart';
+import 'package:hms_project/controller/full_appointment_show_controller';
 import 'package:hms_project/controller/new_controller.dart';
 import 'package:hms_project/controller/scheduled_appointment_controller.dart';
 import 'package:hms_project/controller/search_screen_controller.dart';
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ScheduledAppointmentController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FullAppointmentController(),
         ),
       ],
       child: MaterialApp(
