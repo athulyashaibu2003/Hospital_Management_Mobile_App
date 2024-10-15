@@ -560,7 +560,6 @@ class _NewPatientRegistrationscreenState
                           bool profile = false;
                           bool fileupload = false;
                           if (_formKey.currentState!.validate()) {
-                            // Form is valid, proceed with submission
                             if (_profileImage != null) {
                               profile = true;
                             } else {

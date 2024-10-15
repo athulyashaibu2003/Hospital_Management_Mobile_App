@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hms_project/presentation/doctor_app/accountdeletion.dart';
 import 'package:hms_project/presentation/doctor_app/doctor_login_page.dart';
 import 'package:hms_project/presentation/doctor_app/forget_password_screen.dart';
 
@@ -42,30 +43,41 @@ class _PrivacyAndSecurityScreenState extends State<PrivacyAndSecurityScreen> {
             SizedBox(
               height: 25,
             ),
-            Row(
-              children: [
-                Icon(Icons.delete),
-                Spacer(),
-                Text("Delete Account"),
-                Spacer(),
-                Icon(Icons.arrow_forward_ios_rounded),
-              ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DeleteAccountScreen()));
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.delete),
+                  Spacer(),
+                  Text("Delete Account"),
+                  Spacer(),
+                  Icon(Icons.arrow_forward_ios_rounded),
+                ],
+              ),
             ),
             SizedBox(
               height: 25,
             ),
-            Row(
-              children: [
-                Image.asset(
-                  "assets/images/reset-password.png",
-                  height: 20,
-                ),
-                Spacer(),
-                Text("Password Change"),
-                Spacer(),
-                Icon(Icons.arrow_forward_ios_rounded),
-              ],
-            ),
+            // InkWell(
+            //   onTap: () {},
+            //   child: Row(
+            //     children: [
+            //       Image.asset(
+            //         "assets/images/reset-password.png",
+            //         height: 20,
+            //       ),
+            //       Spacer(),
+            //       Text("Password Change"),
+            //       Spacer(),
+            //       Icon(Icons.arrow_forward_ios_rounded),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

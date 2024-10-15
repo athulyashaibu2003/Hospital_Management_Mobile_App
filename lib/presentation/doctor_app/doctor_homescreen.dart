@@ -94,7 +94,7 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
           child: Column(
             children: [
               SizedBox(
-                height: 20,
+                height: 80,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,170 +265,170 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
                   )
                 ],
               ),
+              //   SizedBox(
+              //     height: 15,
+              //   ),
+              //   Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text("Weekly Appointments"),
+              //       TextButton(
+              //           onPressed: () {},
+              //           child: Text(
+              //             "More",
+              //             style: TextStyle(color: Colors.green),
+              //           ))
+              //     ],
+              //   ),
+              //   SizedBox(
+              //     height: 10,
+              //   ),
+              //   Container(
+              //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              //     height: 200,
+              //     width: 300,
+              //     decoration: BoxDecoration(
+              //         color: ColorConstants.mainwhite,
+              //         borderRadius: BorderRadius.circular(15)),
+              //     child: Row(
+              //       children: [
+              //         Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //           children: [
+              //             SizedBox(
+              //               height: 10,
+              //               width: 10,
+              //             ),
+              //             Text("20"),
+              //             SizedBox(
+              //               height: 5,
+              //             ),
+              //             Text("15"),
+              //             SizedBox(
+              //               height: 5,
+              //             ),
+              //             Text("10"),
+              //             SizedBox(
+              //               height: 5,
+              //             ),
+              //             Text("5"),
+              //             SizedBox(
+              //               height: 5,
+              //             ),
+              //             Text("0")
+              //           ],
+              //         ),
+              //         SizedBox(width: 15),
+              //         Expanded(
+              //           child: Row(
+              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //             children: [
+              //               Column(
+              //                 children: [
+              //                   Container(
+              //                     height: 150,
+              //                     width: 10,
+              //                     color: Colors.green,
+              //                   ),
+              //                   SizedBox(
+              //                     height: 5,
+              //                   ),
+              //                   Text("Mon")
+              //                 ],
+              //               ),
+              //               // SizedBox(width: 15),
+              //               Column(
+              //                 children: [
+              //                   Container(
+              //                     height: 150,
+              //                     width: 10,
+              //                     color: Colors.green,
+              //                   ),
+              //                   SizedBox(
+              //                     height: 5,
+              //                   ),
+              //                   Text("Tue")
+              //                 ],
+              //               ),
+              //               // SizedBox(width: 15),
+              //               Column(
+              //                 children: [
+              //                   Container(
+              //                     height: 150,
+              //                     width: 10,
+              //                     color: Colors.green,
+              //                   ),
+              //                   SizedBox(
+              //                     height: 5,
+              //                   ),
+              //                   Text("Wed")
+              //                 ],
+              //               ),
+              //               // SizedBox(width: 15),
+              //               Column(
+              //                 children: [
+              //                   Container(
+              //                     height: 150,
+              //                     width: 10,
+              //                     color: Colors.green,
+              //                   ),
+              //                   SizedBox(
+              //                     height: 5,
+              //                   ),
+              //                   Text("Thu")
+              //                 ],
+              //               ),
+              //               //  SizedBox(width: 15),
+              //               Column(
+              //                 children: [
+              //                   Container(
+              //                     height: 150,
+              //                     width: 10,
+              //                     color: Colors.green,
+              //                   ),
+              //                   SizedBox(
+              //                     height: 5,
+              //                   ),
+              //                   Text("Fri")
+              //                 ],
+              //               ),
+              //               //  SizedBox(width: 15),
+              //               Column(
+              //                 children: [
+              //                   Container(
+              //                     height: 150,
+              //                     width: 10,
+              //                     color: Colors.green,
+              //                   ),
+              //                   SizedBox(
+              //                     height: 5,
+              //                   ),
+              //                   Text("Sat")
+              //                 ],
+              //               ),
+              //               //  SizedBox(width: 5),
+              //               Column(
+              //                 children: [
+              //                   Container(
+              //                     height: 150,
+              //                     width: 10,
+              //                     color: Colors.green,
+              //                   ),
+              //                   SizedBox(
+              //                     height: 5,
+              //                   ),
+              //                   Text("Sun")
+              //                 ],
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
               SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Weekly Appointments"),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "More",
-                        style: TextStyle(color: Colors.green),
-                      ))
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                height: 200,
-                width: 300,
-                decoration: BoxDecoration(
-                    color: ColorConstants.mainwhite,
-                    borderRadius: BorderRadius.circular(15)),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                          width: 10,
-                        ),
-                        Text("20"),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text("15"),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text("10"),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text("5"),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text("0")
-                      ],
-                    ),
-                    SizedBox(width: 15),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 10,
-                                color: Colors.green,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text("Mon")
-                            ],
-                          ),
-                          // SizedBox(width: 15),
-                          Column(
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 10,
-                                color: Colors.green,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text("Tue")
-                            ],
-                          ),
-                          // SizedBox(width: 15),
-                          Column(
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 10,
-                                color: Colors.green,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text("Wed")
-                            ],
-                          ),
-                          // SizedBox(width: 15),
-                          Column(
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 10,
-                                color: Colors.green,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text("Thu")
-                            ],
-                          ),
-                          //  SizedBox(width: 15),
-                          Column(
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 10,
-                                color: Colors.green,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text("Fri")
-                            ],
-                          ),
-                          //  SizedBox(width: 15),
-                          Column(
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 10,
-                                color: Colors.green,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text("Sat")
-                            ],
-                          ),
-                          //  SizedBox(width: 5),
-                          Column(
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 10,
-                                color: Colors.green,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text("Sun")
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 15,
+                height: 30,
               ),
               Text("Your Appointments"),
               SizedBox(
