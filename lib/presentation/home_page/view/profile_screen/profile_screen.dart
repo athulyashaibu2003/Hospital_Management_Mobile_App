@@ -1,14 +1,92 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:hms_project/controller/search_screen_controller.dart';
+import 'package:http/http.dart' as http;
+import 'package:hms_project/presentation/login_page/view/login_page.dart';
+import 'package:provider/provider.dart';
 
 class PatientProfileScreen extends StatelessWidget {
   const PatientProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var patientDetailsProvider = Provider.of<SearchScreenController>(context);
+    Future<void> deleteAccount(String patientid) async {
+      final url =
+          Uri.parse("http://cybot.avanzosolutions.in/hms/patient_delete.php");
+
+      try {
+        final response = await http.post(
+          url,
+          body: {
+            'patientidcontroller': patientid,
+          },
+        );
+
+        if (response.statusCode == 200) {
+          final result = jsonDecode(response.body);
+          if (result['status'] == 'success') {
+            print('Account deleted successfully');
+
+            // Navigate to login page after account deletion
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+          } else {
+            print(result['message']);
+          }
+        } else {
+          print('Failed to connect to the server');
+        }
+      } catch (e) {
+        log('Error: $e');
+      }
+    }
+
+    void _confirmDeleteAccount() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          var patientDetailsProvider =
+              Provider.of<SearchScreenController>(context);
+          return AlertDialog(
+            title: Text('Delete Account'),
+            content: Text(
+                'Are you sure you want to delete your account? This action cannot be undone.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Dismiss the dialog
+                },
+                child: Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Call the delete account function
+                  deleteAccount(
+                      patientDetailsProvider.searchModel.list?[0].pid ?? "");
+                  Navigator.of(context).pop(); // Dismiss the dialog
+                },
+                child: Text('Delete'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Patient Profile'),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: _confirmDeleteAccount,
+              icon: Icon(Icons.delete_forever_outlined))
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -17,7 +95,7 @@ class PatientProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Profile Picture and Basic Information
-              const Center(
+              Center(
                 child: Column(
                   children: [
                     CircleAvatar(
@@ -27,7 +105,7 @@ class PatientProfileScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'SANTHA 56Y',
+                      patientDetailsProvider.searchModel.list?[0].fname ?? "",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -35,7 +113,7 @@ class PatientProfileScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      'Patient ID: 123456',
+                      'Patient ID: ${patientDetailsProvider.searchModel.list?[0].pid ?? ""}',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey,

@@ -23,7 +23,7 @@ class _DoctorPatientScreenState extends State<DoctorPatientScreen> {
       {required DoctorNameController doctorProvider, String? datePrior}) async {
     await Provider.of<DoctorPatientListController>(context, listen: false)
         .docotorPatientdata(
-            docid: doctorProvider.userCredentialsModel.id!, date: datePrior);
+            docid: doctorProvider.userCredentialsModel!.id!, date: datePrior);
     searchPatientsList = List<DoctorPatientDetailsModel>.from(
         Provider.of<DoctorPatientListController>(context, listen: false)
             .patientDetailsList);
@@ -128,7 +128,7 @@ class _DoctorPatientScreenState extends State<DoctorPatientScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
-              doctorProvider.userCredentialsModel.name ?? '',
+              doctorProvider.userCredentialsModel!.name ?? '',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],

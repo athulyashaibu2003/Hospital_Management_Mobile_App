@@ -82,7 +82,7 @@ class _ReportsState extends State<Reports> {
   late FocusNode ipFocusNode;
   late FocusNode opFocusNode;
   late FocusNode daycareFocusNode;
- 
+
   TextEditingController pidController = TextEditingController();
   // Patient details controllers
   final nameController = TextEditingController();
@@ -652,6 +652,10 @@ class _ReportsState extends State<Reports> {
               ),
             ],
           ),
+          SizedBox(
+            height: 15,
+          ),
+          ElevatedButton(onPressed: () {}, child: Text("Generate pdf"))
         ],
       ),
     );

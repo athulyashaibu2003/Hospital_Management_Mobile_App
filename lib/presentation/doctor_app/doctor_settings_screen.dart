@@ -56,7 +56,7 @@ class _DoctorSettingsScreenState extends State<DoctorSettingsScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        doctorProvider.userCredentialsModel.name ?? '',
+                        doctorProvider.userCredentialsModel!.name ?? '',
                       ),
                       Text("doctor@highland.com")
                     ],
@@ -167,6 +167,7 @@ void _showLogoutDialog(BuildContext context) {
           TextButton(
             onPressed: () {
               // Navigate to the login page and remove all previous routes
+
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => LoginPage()),

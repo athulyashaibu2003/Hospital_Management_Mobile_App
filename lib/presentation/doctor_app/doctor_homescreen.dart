@@ -22,13 +22,13 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
   List<DoctorPatientDetailsModel> searchPatientsList = [];
   fetchdata({required DoctorNameController doctorProvider}) async {
     await Provider.of<FullAppointmentController>(context, listen: false)
-        .fullappointmentdata(docid: doctorProvider.userCredentialsModel.id!);
+        .fullappointmentdata(docid: doctorProvider.userCredentialsModel!.id!);
     await Provider.of<DoctorPatientListController>(context, listen: false)
-        .docotorPatientdata(docid: doctorProvider.userCredentialsModel.id!);
+        .docotorPatientdata(docid: doctorProvider.userCredentialsModel!.id!);
     await Provider.of<ScheduledAppointmentController>(context, listen: false)
         .appointmentsdata(
             date: DateTime.now().toString(),
-            docid: doctorProvider.userCredentialsModel.id!);
+            docid: doctorProvider.userCredentialsModel!.id!);
     setState(() {});
     searchPatientsList = List<DoctorPatientDetailsModel>.from(
         Provider.of<DoctorPatientListController>(context, listen: false)
@@ -72,7 +72,7 @@ class _DoctorHomescreenState extends State<DoctorHomescreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
-              doctorProvider.userCredentialsModel.name ?? '',
+              doctorProvider.userCredentialsModel!.name ?? '',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],

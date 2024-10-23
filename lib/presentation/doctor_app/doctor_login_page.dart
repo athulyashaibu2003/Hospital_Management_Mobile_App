@@ -25,10 +25,11 @@ class _DoctorLoginpageState extends State<DoctorLoginpage> {
         // });
         // log(res.body);
         // log(res.statusCode.toString());
+
         await doctorFunctionProvider.patientdata(
             password: loginpasswordcontroller.text,
             username: loginusernamecontroller.text);
-        if (doctorFunctionProvider.userCredentialsModel.id != null) {
+        if (doctorFunctionProvider.userCredentialsModel?.id != null) {
           // print("Record inserted");
 
           // print(res.body);

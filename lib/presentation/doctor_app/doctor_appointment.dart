@@ -41,7 +41,7 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
     log(today.toString());
     // selectedAppointments = _getAppointmentsForDay(today);
     await appointdeailsprovider.appointmentsdata(
-        docid: doctorProvider.userCredentialsModel.id ?? "",
+        docid: doctorProvider.userCredentialsModel!.id ?? "",
         date: today.toString());
     log(selectedAppointments.length.toString());
 
@@ -70,7 +70,7 @@ class _DoctorAppointmentScreenState extends State<DoctorAppointmentScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
-              doctorProvider.userCredentialsModel.name ?? '',
+              doctorProvider.userCredentialsModel!.name ?? '',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],

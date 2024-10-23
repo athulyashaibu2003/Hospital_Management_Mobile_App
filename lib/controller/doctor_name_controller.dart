@@ -6,7 +6,7 @@ import 'package:hms_project/model/user_credential_model.dart';
 import 'package:http/http.dart' as http;
 
 class DoctorNameController with ChangeNotifier {
-  UserCredentialsModel userCredentialsModel = UserCredentialsModel();
+  UserCredentialsModel? userCredentialsModel;
   Future<void> patientdata(
       {required String username, required String password}) async {
     notifyListeners();
@@ -19,11 +19,12 @@ class DoctorNameController with ChangeNotifier {
       log(res.body);
       var json = jsonDecode(res.body);
       userCredentialsModel = UserCredentialsModel.fromJson(json);
-      log(userCredentialsModel.id ?? '');
+      log(userCredentialsModel!.id ?? '');
       // var json = await jsonDecode(res.body) as Map<String, dynamic>;
       // print(json);
       // searchModel = SearchModel.fromJson(json);
     } catch (e) {
+      userCredentialsModel = null;
       log(e.toString());
     }
     notifyListeners();

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hms_project/controller/doctor_name_controller.dart';
+import 'package:hms_project/presentation/constants/colorconstants.dart';
 import 'package:hms_project/presentation/doctor_app/doctor_login_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -59,15 +60,19 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
               onPressed: () {
                 Navigator.of(context).pop(); // Dismiss the dialog
               },
-              child: Text('Cancel'),
+              child: Text('Cancel',
+                  style: TextStyle(color: ColorConstants.mainBlue)),
             ),
             TextButton(
               onPressed: () {
                 // Call the delete account function
-                deleteAccount(doctorProvider.userCredentialsModel.id!);
+                deleteAccount(doctorProvider.userCredentialsModel!.id!);
                 Navigator.of(context).pop(); // Dismiss the dialog
               },
-              child: Text('Delete'),
+              child: Text(
+                'Delete',
+                style: TextStyle(color: ColorConstants.mainBlue),
+              ),
             ),
           ],
         );
@@ -83,8 +88,14 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
       ),
       body: Center(
         child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor:
+                  WidgetStateProperty.all(ColorConstants.lightgreen)),
           onPressed: _confirmDeleteAccount,
-          child: Text('Delete Account'),
+          child: Text(
+            'Delete Account',
+            style: TextStyle(color: ColorConstants.mainwhite),
+          ),
         ),
       ),
     );
